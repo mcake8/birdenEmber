@@ -1,0 +1,67 @@
+
+
+<h2>Радактирование {{anime.title}}</h2>
+
+<div>
+	Обложка:<br>
+	{{input value=anime.cover}}
+</div>
+<div>
+	Название:<br>
+	{{input value=anime.title}}
+</div>
+<div>
+	Производство:<br>
+	{{input value=anime.manufacturer}}
+</div>
+<div>
+	Жанр:<br>
+	<select onchange={{action "selectChange" value="target.value"}}>
+		{{#each genres as |item|}}			
+			<option>{{item.name}}</option>			
+		{{/each}}
+	</select>
+</div>
+<div>
+	Тип:<br>
+	{{input  value=anime.type}}
+</div>
+<div>
+	Дата:<br>
+	{{input value=anime.date}}
+</div>
+<div>
+	Описание:<br>
+	{{textarea 
+		value=anime.description
+	}}
+</div>
+<button {{action 'edit'}}>Редактировать описание</button><br><br>
+<div class="alert" style="display:{{valid}}">Упс, чего-то не хватает</div><br>
+<h2>Список серий</h2>
+<br><br>
+{{#if anime.series}}
+<ul>
+{{#each anime.series as |item|}}
+
+	<li>{{item.video}}<br>{{item.number}}</li><br><br>
+
+
+{{/each}}
+</ul>
+{{else}}
+Серий нет
+
+{{/if}}
+
+
+{{input 
+	placeholder="Номер Серии" 
+	value=number
+}}
+{{input 
+	placeholder="Ссылка на видео" 
+	value=video
+}}
+<div class="alert" style="display:{{valid2}}" id="block2">Упс, чего-то не хватает</div><br>
+<button {{action 'sendData'}}>Отпавить</button>

@@ -2,6 +2,12 @@
 
 module.exports = function(environment) {
   var ENV = {
+     firebase: {
+      apiKey: "AIzaSyAMn2vIP9IQGdXg3iQOBKZFsrcG-PfXUHY",
+      authDomain: "anime-187da.firebaseapp.com",
+      databaseURL: "https://anime-187da.firebaseio.com",
+      storageBucket: "anime-187da.appspot.com",
+    },
     modulePrefix: 'birden-io',
     environment: environment,
     rootURL: '/',

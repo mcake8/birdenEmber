@@ -1,0 +1,74 @@
+<div class="anime-page-wrap">
+	<div class="anime-menu">
+	<div class="anime-background-image"></div>
+		<div class="opacity-background">
+			<div class="top_wrapper">
+				<div class="name-n-descr">
+					<h1>{{model.title}}</h1>
+					<div class="desrc">
+						{{model.genre.name}}
+					</div>
+				</div>
+				<div class="subscribe-button">
+					<button>
+						ПОДПИСАТЬСЯ
+					</button>
+					<!--<a href="#">Отписаться</a>-->
+				</div>
+			</div>
+			<div class="anime-main-preview">
+				<div class="right-preview">
+					<div class="preview-element"></div>
+					<div class="preview-element"></div>
+					<div class="preview-element"></div>
+					<div class="preview-element"></div>
+					<div class="preview-element"></div>	
+				</div>
+				<div class="video-player"></div>
+			</div>
+		</div>
+	</div>
+	<div class="anime-description">
+		<div class="rating-vol">
+			<div class="percentage-background"></div>
+			<div class="rating-title">Средний балл:</div>
+			<div class="rating-nums">9.2 из 10
+			</div>
+		</div>
+		<div class="short-des">
+			<div class="short-des-title">
+				Краткое описание
+			</div>
+			<div class="description-points">
+				<table style="width:100%">
+					<tr>
+						<td style="">Производство:</td>
+						<td>{{model.manufacturer}}</td>
+					</tr>
+					<tr>
+						<td>Жанр:</td>
+						<td>{{model.genre.name}}</td>
+					</tr>
+					<tr>
+						<td>Тип:</td>
+						<td>{{model.type}}</td>
+					</tr>
+					<tr>
+						<td>Выпуск:</td>
+						<td>{{model.date}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="main-anime-description">
+			{{model.description}}
+		</div>
+	</div>
+</div>
+
+<div>
+	{{#link-to 'main.anime.edit' model.id}}
+		редактировать
+	{{/link-to}}
+</div>
+
