@@ -1,4 +1,12 @@
-import FirebaseAdapter from 'emberfire/adapters/firebase';
+import Ember from 'ember';
+import JSONAPIAdapter from 'ember-data/adapters/json-api';
 
-export default FirebaseAdapter.extend({
+const { String: { pluralize, underscore } } = Ember;
+
+export default JSONAPIAdapter.extend({
+
+  pathForType(type) {
+    return pluralize(underscore(type));
+  }
+
 });

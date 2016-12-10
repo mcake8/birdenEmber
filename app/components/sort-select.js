@@ -5,12 +5,14 @@ export default Ember.Component.extend({
 	catSort: Ember.computed('category', function() {
 		let category = this.get('category');
 		let data = this.get('anims');
+		let gen = this.get('gens');
+		let sortCatalog = gen.filterBy('name', category);
 		if (category !== 'все') {
 			this.get('store').query('genre', {
-				orderBy: 'name',
-				equalTo: category
+				name: category
 			}).then((data) => {
 				data.get('firstObject.animes').then((anime) => {
+					console.log(anime.get('firstObject.title'));
 					data = this.get('updateValue')(anime);
 				})
 			});
