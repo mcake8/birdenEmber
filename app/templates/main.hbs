@@ -1,7 +1,10 @@
 <div class="main-header">
 	<div class="col-1">
 		<div  class="wrap-col">
-			<a href="http://localhost:8888/catalog.php" >КАТАЛОГ АНИМЕ</a>
+			{{!-- <a href="http://localhost:8888/catalog.php" >КАТАЛОГ АНИМЕ</a> --}}
+			{{#link-to 'main.library'}}
+				КАТАЛОГ АНИМЕ
+			{{/link-to}}
 		</div>
 	</div>
 	<div class="col-3">
@@ -14,7 +17,9 @@
 		</div>
 	</div>
 	<div class="logo">
-		<a href="#"><img src="../img/logo.png"></a>
+		{{#link-to 'main'}}
+				<img src="/img/logo.png">
+		{{/link-to}}
 	</div>
 </div>
 {{outlet}}

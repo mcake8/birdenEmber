@@ -1,67 +1,48 @@
+<div class="wraping">
+	<div class="descriping">
+		<div class="descriping-title">Описание аниме</div>
+		<form >
+			<div class="input-title">Заголовок</div>
+			{{input value=anime.title}}
+			<div class="input-title">Производство</div>
+			{{input value=anime.manufacturer}}
+			<div class="input-title">Жанр</div>
+			<select onchange={{action "selectChange" value="target.value"}}>
+				{{#each genres as |item|}}			
+					<option>{{item.name}}</option>			
+				{{/each}}
+			</select>
+			<div class="input-title">Тип аниме</div>
+			{{input  value=anime.type}}
+			<div class="input-title">Дата выпуска</div>
+			{{input value=anime.date}}
+			<div class="input-title">Описание</div>
+			{{textarea value=anime.description}}
+			<button {{action 'edit'}}>Сохранить описание</button>
+			<div class="alert" style="display:{{valid}}">Упс, чего-то не хватает</div>
+			
+		</form>
+	</div>
+	<div class="series-list">
+		<div class="descriping-title">Список серий</div>
+		<div class="input-title">Существующие серии:</div>
+		{{#if anime.series}}
+			{{#each anime.series as |item|}}
+				<div class="url-number">
+					<div class="numer">{{item.number}}</div>
+					<button class="gear" {{action 'editSeries' item.id item.number item.video}}></button>
+					<div class="anime-source">{{item.video}}</div>
+				</div>
+			{{/each}}
+		{{/if}}
+		{{series-edit seriesId=selectedId anime=anime.title number=selectedNumber video=selectedVideo}}
+	</div>
+</div>
 
-
-<h2>Радактирование {{anime.title}}</h2>
-
-<div>
+{{!-- <div>
 	Обложка:<br>
 	{{input value=anime.cover}}
-</div>
-<div>
-	Название:<br>
-	{{input value=anime.title}}
-</div>
-<div>
-	Производство:<br>
-	{{input value=anime.manufacturer}}
-</div>
-<div>
-	Жанр:<br>
-	<select onchange={{action "selectChange" value="target.value"}}>
-		{{#each genres as |item|}}			
-			<option>{{item.name}}</option>			
-		{{/each}}
-	</select>
-</div>
-<div>
-	Тип:<br>
-	{{input  value=anime.type}}
-</div>
-<div>
-	Дата:<br>
-	{{input value=anime.date}}
-</div>
-<div>
-	Описание:<br>
-	{{textarea 
-		value=anime.description
-	}}
-</div>
-<button {{action 'edit'}}>Редактировать описание</button><br><br>
-<div class="alert" style="display:{{valid}}">Упс, чего-то не хватает</div><br>
-<h2>Список серий</h2>
-<br><br>
-{{#if anime.series}}
-<ul>
-{{#each anime.series as |item|}}
-
-	<li>{{item.video}}<br>{{item.number}}</li><br><br>
+</div> --}}
 
 
-{{/each}}
-</ul>
-{{else}}
-Серий нет
 
-{{/if}}
-
-
-{{input 
-	placeholder="Номер Серии" 
-	value=number
-}}
-{{input 
-	placeholder="Ссылка на видео" 
-	value=video
-}}
-<div class="alert" style="display:{{valid2}}" id="block2">Упс, чего-то не хватает</div><br>
-<button {{action 'sendData'}}>Отпавить</button>

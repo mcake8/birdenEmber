@@ -1,21 +1,26 @@
-<form>
-{{input placeholder="Ссылка на обложку" value=cover}}<br>
-{{input placeholder="Название" value=title}}<br>
-{{input placeholder="Производтсво" value=manufacturer}}<br>
-<select onchange={{action "selectChange" value="target.value"}}>
-	<option selected="selected" disabled='disabled'>Выберите жанр</option>
-	{{#each genres as |item|}}
-		<option>{{item.name}}</option>
-	{{/each}}
-</select><br>
-{{input placeholder="Тип" value=type}}<br>
-{{input placeholder="Дата" value=date}}<br>
-{{textarea 
-	placeholder="Описание" 
-	value=description 
-}}<br>
-<div class="alert" style="display:{{valid}}">Упс, чего-то не хватает</div><br>
-<button {{action 'sendData'}} style="display:block; margin-top:15px;">Отпавить</button> 
-
-</form>
-
+<div class="wraping full_one">
+	<div class="descriping">
+		<div class="descriping-title">Новое аниме</div>
+		<form {{action 'sendData' on='submit'}}>
+			<div class="input-title">Заголовок</div>
+			{{input value=title}}
+			<div class="input-title">Производство</div>
+			{{input value=manufacturer}}
+			<div class="input-title">Жанр</div>
+			{{#each genres as |item|}}			
+				<label>
+					{{input type="checkbox" name=item.id checked=item.check}}
+					{{item.name}}
+				</label>
+			{{/each}}
+			<div class="input-title">Тип аниме</div>
+			{{input  value=type}}
+			<div class="input-title">Дата выпуска</div>
+			{{input value=date}}
+			<div class="input-title">Описание</div>
+			{{textarea value=description}}
+			<button>Сохранить аниме</button>
+			<div class="alert" style="display:{{valid}}">Упс, чего-то не хватает</div>
+		</form>
+	</div>
+</div>

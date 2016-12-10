@@ -7,7 +7,7 @@ export default Ember.Route.extend({
 			let genres = ['этти', 'сёнэн', 'сэнтай','меха','спокон','отаку','хентай','мистика'];
 			for (var i = 50; i >= 0; i--) {
 				let num = Math.floor(Math.random() * 8);
-				this.store.query('genres', {
+				this.store.query('genre', {
 					orderBy: 'name',
 					equalTo: genres[num]
 				}).then((data) => {
@@ -37,7 +37,7 @@ export default Ember.Route.extend({
 				let obj = {
 					name: genres[i]
 				};
-				let data = this.store.createRecord('genres', obj);
+				let data = this.store.createRecord('genre', obj);
 				data.save();
 			}
 		}

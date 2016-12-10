@@ -1,0 +1,11 @@
+<div class="left-select">
+	<select  onchange={{action "changeCatalog" value="target.value"}} >
+		<option value="все">Все жанры</option>
+		{{#each gens as |item|}}
+			<option selected={{is-equal item.name category}}>
+				{{item.name}}
+			</option>
+		{{/each}}
+	</select>
+	<div style="display:none;">{{catSort}}</div> 
+</div>

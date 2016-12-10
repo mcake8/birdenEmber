@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-	anime: DS.hasMany('anime', { async: true }),
+	animes: DS.hasMany('anime'),
 	name: DS.attr('string'),
+	check: false
 });

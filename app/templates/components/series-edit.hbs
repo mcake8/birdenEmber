@@ -1,0 +1,7 @@
+<div class="series_add">
+	{{input value=number placeholder="Номер серии"}}
+	{{input value=video placeholder="Файл серии"}}
+	<div class="alert" style="display:{{valid2}}" id="block2">Упс, чего-то не хватает</div><br>
+	<button {{action 'sendData'}}>Добавить</button>
+	{{changeType}}
+</div>

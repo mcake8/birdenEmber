@@ -6,10 +6,15 @@
 				<div class="name-n-descr">
 					<h1>{{model.title}}</h1>
 					<div class="desrc">
-						{{model.genre.name}}
+						{{#each model.genres as |genre|}}
+							{{genre.name}} 
+						{{/each}}
 					</div>
 				</div>
 				<div class="subscribe-button">
+					{{#link-to 'main.anime.edit' model.id class="edit"}}
+						редактировать
+					{{/link-to}}
 					<button>
 						ПОДПИСАТЬСЯ
 					</button>
@@ -64,11 +69,5 @@
 			{{model.description}}
 		</div>
 	</div>
-</div>
-
-<div>
-	{{#link-to 'main.anime.edit' model.id}}
-		редактировать
-	{{/link-to}}
 </div>
 

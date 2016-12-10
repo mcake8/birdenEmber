@@ -5,16 +5,18 @@ export default Ember.Component.extend({
 	store: Ember.inject.service('store'),
 	init() {
 		this._super(...arguments);
-		this.get('store').findAll('genres').then((data) => {
+		this.get('store').findAll('genre').then((data) => {
 			this.set('genres', data);
 		});
 	},
 	actions: {
 		sendData() {
-			let arr = ['title', 'manufacturer', 'cover', 'date', 'description', 'genre','type'];
+			let items = this.get('store').peekAll('genre');
+			let arr = ['title', 'manufacturer','date', 'description','type'];
 			let data = this.getProperties(arr);
+			
+			data.genres = items.filterBy('check', true);
 
-			console.log(data);
 			for (let item in data) {
 				if (data[item] === undefined) {
 					return this.set('valid', 'block');
@@ -22,26 +24,15 @@ export default Ember.Component.extend({
 				this.set('valid', 'none');
 			}
 
-			this.get('store').query('genres', {
-				orderBy: 'name',
-				equalTo: data.genre,
-			}).then((genre) => {
-				data.genre = genre.get('firstObject');
-				let animeToBase = this.get('store').createRecord('anime', data);
-				let series = this.get('store').createRecord('series', {
-					anime: animeToBase,
-					number: this.get('serNum'),
-					video: ''
-				});
-				animeToBase.save();
-				genre.save();
-				series.save();
+			let animeToBase = this.get('store').createRecord('anime', data);
 
-				[genre, animeToBase, series].map((item) => item.save);
+			data.genres.forEach((item) => {
+				let s = this.get('store').peekRecord('genre', item.get('id'));
+				s.get('animes').addObject(animeToBase);
+				s.save();
 			});
-		},
-		selectChange(target){
-			this.set('genre', target);
+
+			animeToBase.save();
 		}
 	}
 		

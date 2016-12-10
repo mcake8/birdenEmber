@@ -15,10 +15,11 @@ Router.map(function() {
         this.route('new');
         this.route('edit', {path: '/:anime_id/edit'});
   	});
-  	this.route('admin');
+  	this.route('admin', function() {
+      this.route('animeList');
+    });
   });
   this.route('generator');
-  this.route('main\\admin\\anime');
 });
 
 export default Router;
