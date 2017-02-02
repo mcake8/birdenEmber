@@ -1,0 +1,51 @@
+<div class="wraping">
+	<div class="descriping">
+		<div class="descriping-title">Описание аниме</div>
+		<form {{action 'edit' on='submit'}} enctype="multipart/form-data" method="post">
+			<div class="input-title">Заголовок</div>
+			{{input value=anime.title}}
+			<div class="input-title">Производство</div>
+			{{input value=anime.manufacturer}}
+			<div class="input-title">Cover:</div>
+			{{file-upload fileInputChanged="receiveFile" uploadProgress="uploadProgress"}}
+			<div class="input-title">Жанр</div>
+			{{#each genres as |item|}}			
+				<label>
+					{{input type="checkbox" name=item.id checked=item.check}}
+					{{item.name}}
+				</label>
+			{{/each}}
+			<div class="input-title">Тип аниме</div>
+			{{input  value=anime.type}}
+			<div class="input-title">Дата выпуска</div>
+			{{input value=anime.date}}
+			<div class="input-title">Описание</div>
+			{{textarea value=anime.description}}
+			<button {{action 'edit'}}>Сохранить описание</button>
+			<div class="alert" style="display:{{valid}}">Упс, чего-то не хватает</div>
+		</form>
+	</div>
+	<div class="series-list">
+		<div class="descriping-title">Список серий</div>
+		<div class="input-title">Существующие серии:</div>
+		{{#if anime.series}}
+			{{#each anime.series as |item|}}
+				<div class="url-number">
+					<div class="numer">{{item.number}}</div>
+					<button class="gear" {{action 'editSeries' item.id item.number item.video}}></button>
+					<div class="anime-source">{{item.video}}</div>
+				</div>
+			{{/each}}
+		{{/if}}
+		{{series-edit  anime=anime.title  anime-id=anime.id}}
+		{{!-- seriesId=selectedId number=selectedNumber video=selectedVideo --}}
+	</div>
+</div>
+
+{{!-- <div>
+	Обложка:<br>
+	{{input value=anime.cover}}
+</div> --}}
+
+
+

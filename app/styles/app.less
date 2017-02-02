@@ -1,0 +1,1142 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+@import "elements.less";
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+input,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block
+}
+body {
+    line-height: 1
+}
+ol,
+ul {
+    list-style: none
+}
+blockquote,
+q {
+    quotes: none
+}
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+    content: '';
+    content: none
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+a,
+input {
+    outline: 0
+}
+input {
+    -webkit-appearance: none
+}
+a:active {
+    background-color: transparent
+}
+a {
+    text-decoration: none
+}
+input::-ms-clear {
+    display: none
+}
+* {
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+button,
+input,
+select {
+    border: none;
+    outline: 0
+}
+body {
+    font-family: Roboto, Arial;
+    line-height: 1.3;
+    background-color: #e4eeff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 1024px;
+}
+.catalog-menu {
+    padding: 41px 30px 70px 50px;
+    -webkit-box-shadow: 0 5px 15px rgba(205, 218, 241, .51);
+    -moz-box-shadow: 0 5px 15px rgba(205, 218, 241, .51);
+    box-shadow: 0 5px 15px rgba(205, 218, 241, .51);
+    margin: 0 auto;
+    display: table;
+    max-width: 1000px;
+    width: 100%;
+    background-color: #fff
+}
+.catalog-menu .top-catalog-options {
+    width: 100%;
+    padding-bottom: 34px;
+    display: table
+}
+.catalog-menu .left-select {
+    float: left
+}
+.catalog-menu .left-select select {
+    width: 239px;
+    height: 39px;
+    font-size: 13px;
+    border-radius: 0;
+    color: #8fa0bf;
+    border: 2px solid #e2e8f3;
+    padding: 10px 16px 11px 16px;
+    background: url(../img/arrow.png) no-repeat 211px center;
+    background-size: 9px;
+    -webkit-appearance: none;
+    -moz-appearance: none
+}
+.catalog-menu .switch {
+    width: 250px;
+    margin-right: 20px;
+    background-color: #e2e8f3;
+    padding: 2px;
+    font-size: 13px;
+    color: #8fa0bf;
+    float: right
+}
+.catalog-menu .switch>div {
+    width: 125px;
+    height: 35px;
+    text-align: center;
+    padding: 11px 17px 0 15px
+}
+.catalog-menu .switch>div:first-child {
+    float: right
+}
+.catalog-menu .switch>.active {
+    color: #2c2f50;
+    background-color: #fff
+}
+.catalog-menu .main-content {
+    display: table;
+    width: 100%
+}
+.catalog-menu .main-content>a {
+    padding: 0 20px 30px 0;
+    height: 364px;
+    width: 25%;
+    float: left;
+    display: block
+}
+.catalog-menu .main-content>a .photo {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 295px
+}
+.catalog-menu .main-content>a .title {
+    height: 14px;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 13px;
+    margin-top: 9px;
+    color: #2c2f50
+}
+.catalog-menu .main-content>a .date {
+    font-size: 11px;
+    color: #9ca0ca;
+    margin-top: 5px
+}
+.catalog-menu .table-list table thead {
+    font-size: 12px;
+    font-weight: 500;
+    color: #2c2f50;
+    border-bottom: 2px solid #353956
+}
+.catalog-menu .table-list table thead tr td {
+    padding-bottom: 10px
+}
+.catalog-menu .table-list table tbody tr:nth-child(2n) {
+    background-color: #f7fafe
+}
+.catalog-menu .table-list table thead tr td:first-child {
+    padding-left: 23px
+}
+.catalog-menu .table-list table tbody tr td {
+    color: #8fa0bf;
+    font-size: 13px;
+    padding: 20px 0;
+    border-bottom: 2px solid #e2e8f3
+}
+.catalog-menu .table-list table tbody tr td a {
+    margin-left: 4px;
+    color: #8fa0bf;
+    font-size: 13px
+}
+.catalog-menu .table-list table tbody tr td a:not(:last-child):after {content: ","}
+.catalog-menu .table-list table tbody tr td:first-child {
+    width: 400px;
+    padding-left: 23px;
+    font-size: 13px;
+    color: #2c2f50
+}
+.catalog-menu .table-list table tbody tr td:last-child {
+    width: 150px;
+    text-align: right;
+    padding-right: 15px
+}
+.catalog-menu .table-list table tbody tr td:last-child span {
+    font-size: 13px;
+    color: #2c2f50;
+    text-align: right;
+    cursor: pointer;
+}
+.catalog-menu .table-list table tbody tr td:last-child span:hover {
+    text-decoration: underline
+}
+.main-header {
+    padding: 0 30px 42px 50px;
+    margin: 45px auto 0;
+    display: table;
+    max-width: 1000px;
+    width: 100%
+}
+.main-header .col-1 {
+    float: left;
+    width: 50%
+}
+.main-header .col-1 .wrap-col {
+    margin-right: 26px
+}
+.main-header .col-1>div>a {
+    width: 140px;
+    display: block;
+    color: #2c2f50;
+    margin-top: 15px;
+    padding: 1px 0;
+    font-weight: 700;
+    font-size: 17px
+}
+.main-header .col-1 a:hover {
+    border-bottom: 1px solid #c6d1e5
+}
+.main-header .logo {
+    margin-left: -26px;
+    width: 52px;
+    float: left
+}
+.main-header .logo>a {
+    width: 52px;
+    height: 52px
+}
+.main-header .col-3 {
+    float: right;
+    width: 50%;
+    margin-left: -26px
+}
+.main-header .col-3 .wrap-col {
+    margin-left: 26px
+}
+.main-header .col-3 .wrap-col>a {
+    display: block;
+    position: relative;
+    margin-right: 22px;
+    color: #2c2f50;
+    padding: 15px 0;
+    font-weight: 700;
+    font-size: 17px;
+    float: right;
+    margin-left: 10px
+}
+.main-header .col-3 .wrap-col>a:before {
+    content: "";
+    width: 14px;
+    height: 15px;
+    display: block
+}
+.main-header .col-3 .wrap-col .pos-1 {
+    padding-top: 13px
+}
+.main-header .col-3 .wrap-col .pos-1:before {
+    display: none
+}
+.main-header .col-3 .wrap-col .pos-2:before {
+    height: 16px;
+    background: url(../img/shape.png)
+}
+.main-header .col-3 .wrap-col .pos-2 .notif {
+    font-weight: 700;
+    padding-top: 1px;
+    text-align: center;
+    color: #fff;
+    font-size: 8px;
+    top: 11px;
+    right: -6px;
+    position: absolute;
+    background-color: #25d1a8;
+    width: 12px;
+    height: 12px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%
+}
+.main-header .col-3 .wrap-col .pos-3 {
+    margin-top: 1px
+}
+.main-header .col-3 .wrap-col .pos-3:before {
+    background: url(../img/exit.png)
+}
+.module-login-form {
+    display: table;
+    max-width: 400px;
+    width: 100%;
+    margin: 45px auto 0
+}
+.module-login-form>div:nth-child(1) {
+    text-align: center
+}
+.module-login-form .form-title {
+    margin-top: 9px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: #2c2f50
+}
+.module-login-form .line {
+    margin: 28px auto 30px;
+    height: 4px;
+    width: 81px;
+    background-color: #2c2f50
+}
+.module-login-form .wrap>div {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    color: #2c2f50
+}
+.module-login-form .wrap>div>div {
+    color: #8185a2;
+    font-size: 16px;
+    font-weight: 400
+}
+.module-login-form .wrap .num-1 {
+    float: left
+}
+.module-login-form .wrap .num-3 {
+    float: right
+}
+.module-login-form .form {
+    -webkit-box-shadow: 0 5px 15px rgba(205, 218, 241, .51);
+    -moz-box-shadow: 0 5px 15px rgba(205, 218, 241, .51);
+    box-shadow: 0 5px 15px rgba(205, 218, 241, .51);
+    margin: 44px 0 70px;
+    background-color: #fff;
+    padding: 40px 45px 54px
+}
+.module-login-form .form input {
+    font-weight: 500;
+    font-size: 16px;
+    color: #8fa0bf;
+    padding: 20px 0 20px 27px;
+    max-width: 308px;
+    border: 3px solid #e2e8f3;
+    display: block;
+    width: 100%;
+    margin-bottom: 17px
+}
+.module-login-form .form input::-webkit-input-placeholder {
+    color: #000
+}
+.module-login-form .form button {
+    margin-top: 3px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 23px 0px 24px;
+    background-color: #25d1a8;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px
+}
+.module-login-form .form button:disabled{
+    opacity: 0.5;
+    cursor: auto;
+}
+.module-login-form .form .reg_bt{
+    margin-top: 15px;
+    background-color: #82ada3;
+}
+.module-login-form .form .not-now {
+    font-size: 14px;
+    color: #b26161;
+    font-weight: 500;
+    border: 1px solid #f4d1d1;
+    margin-top: 21px;
+    padding: 16px 60px 15px 22px;
+    width: 100%;
+    background-color: #fee;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box
+}
+.anime-page-wrap {
+    width: 100%;
+    max-width: 1000px;
+    display: table;
+    margin: 0 auto 100px
+}
+.anime-page-wrap .anime-menu {
+    position: relative;
+    width: 100%;
+    padding: 32px 50px 50px;
+    background-color: #2c2f50
+}
+.anime-page-wrap .anime-menu .anime-background-image {
+    background-size: cover;
+    opacity: .17;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background-image: url(../img/rectangle-7.png)
+}
+.anime-page-wrap .anime-menu .opacity-background {
+    position: relative;
+    z-index: 2
+}
+.anime-page-wrap .anime-menu .opacity-background .top_wrapper {
+    width: 100%;
+    padding: 0 0 26px;
+    display: table
+}
+.anime-page-wrap .anime-menu .opacity-background .top_wrapper .name-n-descr {
+    float: left;
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff
+}
+.anime-page-wrap .anime-menu .opacity-background .top_wrapper .name-n-descr .desrc {
+    font-size: 13px;
+    color: #797eae
+}
+.anime-page-wrap .anime-menu .opacity-background .top_wrapper .name-n-descr .desrc a {
+    margin-left: 3px;
+    font-size: 13px;
+    color: #797eae
+}
+.anime-page-wrap .anime-menu .opacity-background .top_wrapper .name-n-descr .desrc:first-child {
+    margin-left: 0
+}
+.anime-page-wrap .anime-menu .opacity-background .top_wrapper .subscribe-button {
+    float: right
+}
+.subscribe-button .edit {
+    color: #fff;
+    margin-right: 10px;
+}
+.anime-page-wrap .anime-menu .opacity-background .top_wrapper .subscribe-button button {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    width: 168px;
+    height: 39px;
+    text-align: center;
+    background-color: #25d1a8
+}
+.anime-page-wrap .anime-menu .opacity-background .top_wrapper .subscribe-button .unsubscribe {
+    background-color: #2c2f50;
+    border: 2px solid #5f6286
+}
+.anime-page-wrap .anime-menu .opacity-background .anime-main-preview {
+    width: 900px;
+    height: 396px;
+    display: table
+}
+.video-player {
+    margin-right: 171px;
+    height: 400px;
+    background-size: cover;
+}
+.video-player .player{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.player video{
+    width: 100%;
+    height: 100%;
+}
+.player .controls_row{
+    width: 100%;
+    height: 54px;
+    position: absolute;
+    padding-top: 5px;
+    bottom: 0px;
+    background-color: #2d3d53;
+    border-bottom-left-radius: 5px;
+    img{
+        user-select:none;
+    }
+}
+.player .controls_row .progress_wrap{
+    position: absolute;
+    top: 10px;
+    height: 5px;
+    width: 100%;
+    left: 0px;
+    background-color: #445b7c;
+    .transition(0.2s);
+    .round{
+        width: 14px;
+        height: 14px;
+        .rounded(50%);
+        transition: 0.6s linear;
+        background-color: #a7ccfa;
+        top: 50%;
+        margin-top: -7px;
+        margin-left: -7px;
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -o-user-select: none;
+          user-select: none;
+    }
+    .click_mask{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        cursor: pointer;
+    }
+}
+.select_zone{
+    height: 20px;
+    position: absolute;
+    width: 100%;
+    top: -10px;
+    &:hover{
+        .progress_wrap{
+            top: 5px;
+            height: 10px;
+            .round{
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+        
+    }
+}
+.player .controls_row .progress_wrap .line{
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    background-color: #88aeda;
+    transition: 0.6s linear;
+    position: absolute;
+}
+.play{
+    width: 15px;
+    height: 18px;
+    float: left;
+    margin-left: 35px;
+    margin-top: 15px;
+    cursor: pointer;
+    img{
+        display: none;
+        width: 100%;
+        opacity: 0.7;
+        &:first-child{
+            display: block;
+        }
+    }
+    &:hover{
+        img{
+            opacity: 1;
+        }
+    }
+}
+
+.play.paused{
+    img{
+        display: block;
+        width: auto;
+        &:first-child{
+            display: none;
+        }
+    }
+}
+.volume{
+    width: 21px;
+    height: 19px;
+    float: left;
+    margin: 15px 0px 0px 30px;
+    position: relative;
+    &:hover{
+        span{
+            opacity: 1;
+        }
+    }
+    span{
+        display: block;
+        width: 100%;
+        opacity: 0.7;
+        img{
+            display: none;
+            &:last-child{
+                display: block;
+            }
+        }
+    }
+    &.half{
+        span{
+            padding-top: 1px;
+            img{
+                &:last-child{
+                    display: none;
+                }
+                &:nth-child(2){
+                    display: block;
+                }
+            }
+        }
+    }
+    &.zero{
+        span{
+            padding-top: 2px;
+            img{
+                left: -2px;
+                position: relative;
+                &:last-child{
+                    display: none;
+                }
+                &:first-child{
+                    display: block;
+                }
+            }
+        }
+    }
+    &:hover{
+        .pannel_wrap{
+            display: block;
+        }
+    }
+    .pannel_wrap{
+        height: 242px;
+        position: absolute;
+        bottom: 0px;
+        width: 36px;
+        left: 50%;
+        margin-left: -18px;
+        display: none;
+    }
+    .pannel{
+        position: absolute;
+        width: 43px;
+        height: 192px;
+        background-color: #2d3d53;
+        margin-left: -22px;
+        left: 50%;
+        top: 0px;
+        &:after{
+            content: '';
+            display: block;
+            position: absolute;
+            background-color: #2d3d53;
+            width: 10px;
+            height: 10px;
+            .rotation(45deg);
+            left: 50%;
+            margin-left: -5px;
+            bottom: -5px;
+        }
+        .mute{
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            margin-left: -10px;
+            bottom: 13px;
+            opacity: 0.7;
+            cursor: pointer;
+            &:hover{
+                opacity: 1;
+            }
+        }
+        .vl_bar{
+            width: 10px;
+            height: 139px;
+            background-color: #364761;
+            margin: 15px auto 0px;
+            position: relative;
+            cursor: pointer;
+            .vl_progress{
+                position: absolute;
+                width: 100%;
+                bottom: 0%;
+                height: 85%;
+                background-color: #6181a7;
+            }
+            .vl_circle{
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: 50%;
+                bottom: 85%;
+                margin-left: -10px;
+                margin-bottom: -10px;
+                background-color: #89aeda;
+                .rounded(50%);
+                z-index: 2;
+            }
+        }
+        input{
+            .rotation(-90deg);
+            position: absolute;
+            top: 60px;
+            width: 139px;
+            height: 20px;
+            left: -64px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 3;
+        }
+    }
+}
+.timer{
+    float: left;
+    margin-top: 18px;
+    margin-left: 24px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1;
+    span{
+        &:last-child{
+            opacity: 0.7;
+            margin-left: 10px;
+        }
+    }
+}
+.anime-page-wrap .anime-menu .opacity-background .anime-main-preview .right-preview {
+    overflow: auto;
+    float: right;
+    width: 171px;
+    height: 400px;
+    background-color: #181a32
+}
+.anime-page-wrap .anime-menu .opacity-background .anime-main-preview .right-preview::-webkit-scrollbar {
+    display: none
+}
+.anime-page-wrap .anime-menu .opacity-background .anime-main-preview .right-preview .preview-element {
+    height: 82px;
+    margin: 11px 13px 0 13px;
+    background: url(../img/bitmap.png);
+    background-size: cover;
+    opacity: .36;
+    -moz-transition-duration: .4s;
+    -webkit-transition-duration: .4s;
+    -o-transition-duration: .4s;
+    transition-duration: .4s
+}
+.anime-page-wrap .anime-menu .opacity-background .anime-main-preview .right-preview .preview-element:hover {
+    opacity: 1
+}
+.anime-page-wrap .anime-menu .opacity-background .anime-main-preview .right-preview .preview-element:last-child {
+    margin-bottom: 11px
+}
+.anime-page-wrap .anime-description {
+    width: 100%;
+    display: table;
+    background-color: #fff;
+    padding: 37px 50px 62px 51px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #000
+}
+.anime-page-wrap .anime-description .short-des {
+    margin-right: 262px
+}
+.anime-page-wrap .anime-description .short-des .description-points {
+    margin-top: 14px;
+    display: table
+}
+.anime-page-wrap .anime-description .short-des .description-points table tr td {
+    padding-bottom: 10px;
+    padding-right: 25px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #333
+}
+.anime-page-wrap .anime-description .short-des .description-points table tr td:first-child {
+    font-weight: 400;
+    color: #8fa0bf
+}
+.anime-page-wrap .anime-description .rating-vol {
+    float: right;
+    width: 221px;
+    height: 117px;
+    border: solid 2px #e2e8f3;
+    position: relative
+}
+.anime-page-wrap .anime-description .rating-vol .percentage-background {
+    width: 100%;
+    height: 92%;
+    position: absolute;
+    background-color: #e2e8f3;
+    opacity: .63;
+    bottom: 0
+}
+.anime-page-wrap .anime-description .rating-vol .rating-title {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 34px;
+    color: #8fa0bf
+}
+.anime-page-wrap .anime-description .rating-vol .rating-nums {
+    text-align: center;
+    color: #333;
+    font-size: 23px
+}
+.anime-page-wrap .anime-description .main-anime-description {
+    padding-top: 12px;
+    clear: both;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.54
+}
+.wraping {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto
+}
+.wraping .series-list {
+    width: 50%;
+    display: table;
+    float: left;
+    padding: 41px 50px 82px 50px;
+    background-color: #f7fafe;
+    border-left: 4px solid #eef4ff
+}
+.wraping .series-list .input-title {
+    padding-top: 23px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #8fa0bf
+}
+.wraping .series-list .descriping-title {
+    font-size: 22px;
+    font-weight: 500
+}
+.wraping .series-list .url-number {
+    width: 100%;
+    height: 48px;
+    margin-top: 11px;
+    background-color: #eef4ff
+}
+.wraping .series-list .url-number .numer {
+    padding-top: 13px;
+    margin-left: 19px;
+    float: left;
+    color: #8fa0bf;
+    font-size: 14px
+}
+.wraping .series-list .url-number .anime-source {
+    margin-left: 60px;
+    padding-top: 13px;
+    font-size: 14px;
+    color: #000
+}
+.wraping .series-list .url-number .gear {
+    float: right;
+    margin-top: 13px;
+    margin-right: 17px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/settings.png);
+    background-color: transparent;
+}
+.wraping .descriping {
+    padding: 41px 50px 42px;
+    display: table;
+    width: 50%;
+    float: left;
+    background-color: #fff
+}
+.full_one .descriping{
+    float: none;
+    margin: 0px auto;
+}
+.wraping .descriping .descriping-title {
+    font-size: 22px;
+    font-weight: 500
+}
+.wraping .descriping .input-title {
+    padding-top: 23px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #8fa0bf
+}
+.wraping .descriping input[type='text'],
+.wraping .descriping form select,.wraping .descriping form label {
+    width: 100%;
+    height: 48px;
+    display: table;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 11px;
+    border: 2px solid #e2e8f4;
+    padding: 13px 0 16px 19px
+}
+.uploader{
+    width: 100%;
+    height: 150px;
+    background-color: #e2e8f4;
+    padding: 15px;
+}
+.uploader.is-dragging{
+    background-color: #25d1a9;
+}
+.wraping .descriping form .upload_bt{
+    display: table;
+    width: auto;
+    height: auto;
+    padding: 0px;
+    margin: 0px auto;
+}
+.Upload_Cont{
+    text-align: center;
+}
+.wraping .descriping form .upload_bt .bt{
+    width: 145px;
+    height: 40px;
+    background-color: #9ab6c2;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    margin:15px 0px 20px;
+    font-weight: 500;
+    padding-top: 10px;
+    cursor: pointer;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.wraping .descriping form .upload_bt input[type='file']{
+    display: none;
+}
+.wraping .descriping form label{
+    cursor: pointer;
+}
+.wraping .descriping form label input{
+    -webkit-appearance: checkbox;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.wraping .descriping form input::-webkit-input-placeholder {
+    color: #8fa0bf
+}
+.wraping .descriping form input::-moz-placeholder {
+    color: #8fa0bf
+}
+.wraping .descriping form input:-moz-placeholder {
+    color: #8fa0bf
+}
+.wraping .descriping form input:-ms-input-placeholder {
+    color: #8fa0bf
+}
+.wraping .descriping form textarea {
+    width: 100%;
+    height: 177px;
+    background-color: #fff;
+    color: #8fa0bf;
+    font-size: 14px;
+    font-weight: 500;
+    padding-top: 13px;
+    padding-left: 19px;
+    resize: none;
+    outline: 0
+}
+.wraping .descriping form textarea::-webkit-input-placeholder {
+    font-family: Roboto;
+    color: #8fa0bf;
+    font-size: 15px;
+    font-weight: 500
+}
+.wraping .descriping form textarea::-moz-placeholder {
+    color: #8fa0bf
+}
+.wraping .descriping form textarea:-moz-placeholder {
+    color: #8fa0bf
+}
+.wraping .descriping form textarea:-ms-input-placeholder {
+    color: #8fa0bf
+}
+.wraping .descriping button {
+    margin: 25px 0px 40px;
+    width: 100%;
+    background-color: #25d1a9;
+    height: 65px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700
+}
+.series_add{
+    padding-top: 30px;
+}
+.series_add input[type="text"]:first-child{
+    width: 229px;
+    height: 48px;
+    background-color: #ffffff;
+    border: solid 3px #e2e8f4;
+    padding: 0px 15px 0px 19px; 
+    /*margin-right: 10px;*/
+}
+.series_add label .add_bt{
+    width: 152.6px;
+    padding-top: 12px;
+    cursor: pointer;
+    height: 48px;
+    border: solid 3px #e2e8f4;
+    text-align: center;
+    background-color: #f7fafe;
+    float: right;
+}
+.series_add label input[type='file']{
+    display: none;
+}
+.series_add button{
+    width: 100%;
+    height: 48px;
+    border-radius: 3px;
+    background-color: #25d1a9;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.13;
+    text-align: center;
+    margin-top: 17px;
+    cursor: pointer;
+}
+button{
+    cursor: pointer;
+}

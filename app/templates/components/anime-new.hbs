@@ -1,7 +1,11 @@
 <div class="wraping full_one">
 	<div class="descriping">
 		<div class="descriping-title">Новое аниме</div>
-		<form {{action 'sendData' on='submit'}}>
+		<div class="input-title">Добавить по ссылке</div>
+		{{input value=url}}
+		<div id="info"></div>
+		<button {{action 'addOnUrl'}}>Заполнить поля</button>
+		<form {{action 'sendData' on='submit'}} enctype="multipart/form-data" method="post">
 			<div class="input-title">Заголовок</div>
 			{{input value=title}}
 			<div class="input-title">Производство</div>
@@ -14,7 +18,14 @@
 				</label>
 			{{/each}}
 			<div class="input-title">Тип аниме</div>
+
 			{{input  value=type}}
+			<div class="input-title">Cover:</div>
+			{{file-upload fileInputChanged="receiveFile" uploadProgress="uploadProgress"}}
+			
+		       
+		    
+			{{!-- {{input  value=cover}} --}}
 			<div class="input-title">Дата выпуска</div>
 			{{input value=date}}
 			<div class="input-title">Описание</div>

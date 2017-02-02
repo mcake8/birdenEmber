@@ -20,6 +20,7 @@ Router.map(function() {
     });
   });
   this.route('generator');
+  this.route('registration');
 });
 
 export default Router;

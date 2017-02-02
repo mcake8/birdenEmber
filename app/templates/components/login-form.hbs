@@ -15,10 +15,17 @@
 			<div>пользователей</div>
 		</div>
 	</div>
-	<div class="form">
-		{{input placeholder="Логин" value=logVal}}
-		{{input placeholder="Пароль" value=passVal}}
-		<button {{action 'validator'}} disabled={{isDisabled}}>Войти</button>
-		<div class="not-now">Пароли и логин не совпадают</div>
-	</div>
+	<form class="form"{{action 'authenticate' on='submit'}}>
+		<label for="identification">
+			{{input id='identification' placeholder="Логин" value=identification}}
+		</label>
+		<label for="password">
+			{{input id='password' placeholder="Пароль" value=password}}
+		</label>
+		<button type="submit" disabled={{isDisabled}}>Войти</button>
+		{{#if errorMessage}}
+			<div class="not-now">Пароли и логин не совпадают</div>
+		{{/if}}
+		{{#link-to 'registration'}}<button class="reg_bt">Зарегистрироваться</button>{{/link-to}}
+	</form>
 </div>

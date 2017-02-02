@@ -1,19 +1,25 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	logVal: '',
-	passVal: '',
-	isDisabled: Ember.computed('logVal', 'passVal', function() {
-		let passVal = this.get('passVal'),
-			logVal = this.get('logVal');
+	valid: Ember.inject.service('valid'),
+	session: Ember.inject.service(),
+	identification: '',
+	password: '',
+	isDisabled: Ember.computed('identification', 'password', function() {
+		let password = this.get('password'),
+			identification = this.get('identification');
+		if (this.get('valid').isNone([identification,password])) {
 
-		if (logVal.length <= 0 && passVal.length <= 0) {
 			return true;
 		} 
 	}),
 	actions: {
-		validator(){
-			
-		}
+		authenticate() {
+	      	var credentials = this.getProperties('identification', 'password'),
+	        	authenticator = 'authenticator:jwt';
+	      	this.get('session').authenticate(authenticator, credentials).catch((reason)=>{
+		        this.set('errorMessage', reason.error || reason);
+		    });
+	    }
 	}
 });

@@ -1,7 +1,9 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-	video: DS.attr('string'),
+	video: DS.attr('file'),
 	number: DS.attr('string'),
 	anime: DS.belongsTo('anime', { async: true }),
+	thumb: DS.attr('string'),
+	cover: DS.attr('string')
 });

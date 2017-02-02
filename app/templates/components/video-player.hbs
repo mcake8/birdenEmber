@@ -1,0 +1,50 @@
+<div class="right-preview">
+{{#each anime.series as |item|}}
+	<div class="preview-element" onclick={{action 'selectSeries' item.cover}} data={{item.video.url}} style="background: url(../{{item.thumb}})">{{item.number}}</div>
+{{/each}}
+</div>
+<div class="video-player">
+	<div class="player">
+		<video src={{video_url}} id="video"></video>
+		<div class="controls_row">
+			<div class="select_zone">
+				<div class="progress_wrap" onclick={{action 'setTime'}}>
+					<div class="line"></div>
+					<div class="round" id="round" ></div>
+					<div class="click_mask" onmousemove={{action 'range'}} onmousedown={{action 'detect'}} onmouseup={{action 'undetect'}}></div>
+				</div>
+			</div>
+			
+			<div class="play">
+				<img src="/img/play.svg">
+				<img src="/img/pause.svg">
+			</div>
+			<div class="volume full">
+				<span>
+					<img src="/img/1.svg">
+					<img src="/img/2.svg">
+					<img src="/img/3.svg">
+				</span>
+				<div class="pannel_wrap">
+					<div class="pannel">
+						<div class="vl_bar">
+							<div class="vl_circle"></div>
+							<div class="vl_progress"></div>
+							{{input 
+								type="range" 
+								value=volume
+								min="0" 
+								max="100" 
+							}}
+						</div>
+						<img src="/img/4.svg" class="mute unmuted" onclick={{action 'toggleMute'}}>
+					</div>
+				</div>
+			</div>
+			<div class="timer">
+				<span id="curentTime">00:00</span>
+				<span id="duration">00:00</span>
+			</div>
+		</div>
+	</div>
+</div>

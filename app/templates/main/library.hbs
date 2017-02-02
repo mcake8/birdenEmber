@@ -15,7 +15,7 @@
 	<div class="main-content">
 		{{#each animeItems as |catalog|}}
 			{{#link-to 'main.anime.page' catalog.id }}
-				<div class="photo" style="background-image: url({{catalog.cover}});"></div>	
+				<div class="photo" style={{html-safe (concat "background-image: url(" catalog.cover.url ");")}}></div>	
 				<div class="title">{{catalog.title}}</div>
 				<div class="date">{{catalog.date}}</div>
 			{{/link-to}}

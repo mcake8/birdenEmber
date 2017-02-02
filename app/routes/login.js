@@ -1,11 +1,5 @@
 import Ember from 'ember';
-
-export default Ember.Route.extend({
-	model() {
-		return Ember.RSVP.hash({
-			genres: this.store.findAll('genres'),
-			anime: this.store.findAll('anime')
-		});
-		
-	}
+import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
+export default Ember.Route.extend(UnauthenticatedRouteMixin,{
+	routeIfAlreadyAuthenticated: 'main'
 });
