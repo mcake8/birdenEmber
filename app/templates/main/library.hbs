@@ -15,7 +15,21 @@
 	<div class="main-content">
 		{{#each animeItems as |catalog|}}
 			{{#link-to 'main.anime.page' catalog.id }}
-				<div class="photo" style={{html-safe (concat "background-image: url(" catalog.cover.url ");")}}></div>	
+				<div 
+					class="photo" 
+					style={{html-safe (concat "background-image: url(" catalog.cover.url ");")}}
+					onmouseenter={{action 'showVideoPreview' catalog.video_preview}}
+					onmouseleave={{action 'hideVideoPreview'}}
+				>
+					<video 
+						preload="auto" 
+						class="video_preview" 
+						width="210" 
+						height="295" 
+						src={{concat "/" catalog.video_preview}}
+					>
+					</video>
+				</div>	
 				<div class="title">{{catalog.title}}</div>
 				<div class="date">{{catalog.date}}</div>
 			{{/link-to}}

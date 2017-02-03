@@ -9,12 +9,14 @@
 			<div class="input-title">Cover:</div>
 			{{file-upload fileInputChanged="receiveFile" uploadProgress="uploadProgress"}}
 			<div class="input-title">Жанр</div>
-			{{#each genres as |item|}}			
-				<label>
-					{{input type="checkbox" name=item.id checked=item.check}}
-					{{item.name}}
-				</label>
-			{{/each}}
+			<div class="genres-list">
+				{{#each genres as |item|}}			
+					<label class="genres-list__item">
+						{{input type="checkbox" name=item.id checked=item.check}}
+						{{item.name}}
+					</label>
+				{{/each}}
+			</div>
 			<div class="input-title">Тип аниме</div>
 			{{input  value=anime.type}}
 			<div class="input-title">Дата выпуска</div>
@@ -28,24 +30,22 @@
 	<div class="series-list">
 		<div class="descriping-title">Список серий</div>
 		<div class="input-title">Существующие серии:</div>
-		{{#if anime.series}}
-			{{#each anime.series as |item|}}
-				<div class="url-number">
-					<div class="numer">{{item.number}}</div>
-					<button class="gear" {{action 'editSeries' item.id item.number item.video}}></button>
-					<div class="anime-source">{{item.video}}</div>
-				</div>
-			{{/each}}
-		{{/if}}
+		{{#each sortSeries as |item|}}
+			<div class="url-number">
+				<div class="numer">{{item.number}}</div>
+				{{#if item.is_video_preview}}
+					<button class="video-preview  video-preview_is-active" {{action 'pushVideoPreview' anime.id item.id}}>
+						Active
+					</button>
+				{{else}}
+					<button class="video-preview" {{action 'pushVideoPreview' anime.id item.id}}>
+						Preview
+					</button>
+				{{/if}}
+				<button class="gear" {{action 'editSeries' item.id item.number item.video}}></button>
+				<div class="anime-source">{{item.video.url}}</div>
+			</div>
+		{{/each}}
 		{{series-edit  anime=anime.title  anime-id=anime.id}}
-		{{!-- seriesId=selectedId number=selectedNumber video=selectedVideo --}}
 	</div>
 </div>
-
-{{!-- <div>
-	Обложка:<br>
-	{{input value=anime.cover}}
-</div> --}}
-
-
-

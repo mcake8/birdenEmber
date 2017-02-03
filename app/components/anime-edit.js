@@ -12,6 +12,8 @@ export default Ember.Component.extend({
 			item.set('check', true)
 		});
 	},
+	sortProperties: ['number'],
+	sortSeries: Ember.computed.sort('anime.series', 'sortProperties'),
 	actions: {
 		edit(){
 			let arr = {
@@ -25,22 +27,12 @@ export default Ember.Component.extend({
 			};
 			let checks = this.get('store').peekAll('genre');
 			arr.genre = checks.filterBy('check', true);
-			console.log(arr.cover)
-			// for (let item in arr) {
-			// 	if (arr[item].length === 0) {
-			// 		return this.set('valid', 'block');
-			// 	}
-			// 	this.set('valid', 'none');
-			// }
 			let anime = this.get('anime');
 			this.get('store').findRecord('anime',anime.id).then((anime) =>{
 				anime.setProperties(arr);
 				anime.save();
 			});
 		},
-		// selectChange(target){
-		// 	this.set('genre', target);
-		// },
 		editSeries(targetID,targetNum,targetVid) {
 			this.set('selectedId', targetID);
 			this.set('selectedVideo', targetVid);
@@ -49,6 +41,23 @@ export default Ember.Component.extend({
 		receiveFile(file){
 		
 			this.set('cover', file);
+	    },
+	    pushVideoPreview(anime_id, series_id) {
+	    	let _this = this;
+	    	let target = event.target;
+	    	let xhr = new XMLHttpRequest();
+	    	let url = window.location.origin + '/animes/video_preview/?anime_id=' + anime_id + '&series_id=' + series_id; 
+	    	xhr.open('get', url, true);
+	    	xhr.send();
+
+	    	xhr.onload = function() {
+				target.innerHTML = "Active";
+    			target.className += " video-preview_is-active";
+
+    			_this.get('store').findAll('series');
+	    	};
+
+	    	target.innerHTML = "Modify..";
 	    }
 	}
 });

@@ -5,5 +5,6 @@ export default DS.Model.extend({
 	number: DS.attr('string'),
 	anime: DS.belongsTo('anime', { async: true }),
 	thumb: DS.attr('string'),
-	cover: DS.attr('string')
+	cover: DS.attr('string'),
+	is_video_preview: DS.attr('boolean')
 });

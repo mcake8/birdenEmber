@@ -4,7 +4,6 @@ export default Ember.Component.extend({
 	valid: 'none',
 	store: Ember.inject.service('store'),
 	cover: '',
-	// assets: [],
 	init() {
 		this._super(...arguments);
 		this.get('store').findAll('genre').then((data) => {
@@ -13,7 +12,6 @@ export default Ember.Component.extend({
 	},
 	genreIterator(genres) {
 		let _this = this;
-		// let items = this.get('store').peekAll('genre');
 		genres.forEach(function(item) {
 			_this.get('store').queryRecord('genre', {
 				name: item
