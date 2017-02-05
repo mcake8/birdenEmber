@@ -232,7 +232,16 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 295px
+    height: 295px;
+    video {
+        visibility:hidden;
+        opacity:0;
+        transition-duration:0.3s;
+        &.photo_is-acitve {
+            visibility:visible;
+            opacity:1;
+        }
+    }
 }
 .catalog-menu .main-content>a .title {
     height: 14px;
@@ -925,12 +934,12 @@ body {
 .wraping {
     max-width: 1000px;
     width: 100%;
-    margin: 0 auto
+    margin: 0 auto;
+    display: table;
 }
 .wraping .series-list {
     width: 50%;
-    display: table;
-    float: left;
+    display: table-cell;
     padding: 41px 50px 82px 50px;
     background-color: #f7fafe;
     border-left: 4px solid #eef4ff
@@ -960,6 +969,7 @@ body {
 }
 .wraping .series-list .url-number .anime-source {
     margin-left: 60px;
+    margin-right: 114px;
     padding-top: 13px;
     font-size: 14px;
     color: #000
@@ -976,9 +986,8 @@ body {
 }
 .wraping .descriping {
     padding: 41px 50px 42px;
-    display: table;
+    display: table-cell;
     width: 50%;
-    float: left;
     background-color: #fff
 }
 .full_one .descriping{
@@ -1139,4 +1148,30 @@ body {
 }
 button{
     cursor: pointer;
+}
+
+/* Страница редактирования аниме */
+.wraping .descriping .genres-list {
+    max-height: 300px;
+    background-color: #fbfcfd;
+    overflow:auto;
+    .genres-list__item {
+        margin-top:0px;
+        border-bottom:0px;
+        &:last-child {
+            border-bottom:2px solid #e2e8f4;
+        }
+    }
+}
+
+.video-preview {
+    margin: 14px 17px 0 0;
+    font-weight:500;
+    float: right;
+    background-color: #d0d8e6;
+}
+
+.video-preview_is-active {
+    background-color: #25d1a9;
+    color:#fff;
 }
