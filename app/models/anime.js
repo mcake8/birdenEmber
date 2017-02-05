@@ -10,5 +10,5 @@ export default DS.Model.extend({
 	date: DS.attr('string'),
 	description: DS.attr('string'),
 	series: DS.hasMany('series', { async: true }),
-	subscribers: DS.attr('string')
+	users: DS.hasMany('users')
 });
