@@ -1,7 +1,6 @@
 <div class="main-header">
 	<div class="col-1">
 		<div  class="wrap-col">
-			{{!-- <a href="http://localhost:8888/catalog.php" >КАТАЛОГ АНИМЕ</a> --}}
 			{{#link-to 'main.library'}}
 				КАТАЛОГ АНИМЕ
 			{{/link-to}}
@@ -13,7 +12,7 @@
 			<a href="#" class="pos-2">
 				<div class="notif">4</div>
 			</a>
-			<a href="#" class="pos-1">ARTMIZU</a>
+			<a href="#" class="pos-1">{{sessionAccount.account.email}}</a>
 		</div>
 	</div>
 	<div class="logo">
