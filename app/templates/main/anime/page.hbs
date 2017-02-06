@@ -1,6 +1,6 @@
 <div class="anime-page-wrap">
 	<div class="anime-menu">
-	<div class="anime-background-image" style="background-image:url(../{{model.series.firstObject.cover}})"></div>
+	<div class="anime-background-image" style={{html-safe (concat "background-image: url(../" model.series.firstObject.cover ");")}}></div>
 		<div class="opacity-background">
 			<div class="top_wrapper">
 				<div class="name-n-descr">
@@ -40,7 +40,7 @@
 			<div class="description-points">
 				<table style="width:100%">
 					<tr>
-						<td style="">Производство:</td>
+						<td >Производство:</td>
 						<td>{{model.manufacturer}}</td>
 					</tr>
 					<tr>

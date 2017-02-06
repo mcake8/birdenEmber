@@ -32,12 +32,9 @@ export default Ember.Component.extend({
 		      		email: identification,
 		      		password: repeatPassword
 		      	});
-		      	console.log(user);
-		      	console.log(createUser);
-
 		      	createUser.save();
 	      	} else {
-	      		console.log('error')
+	      		console.log('error');
 	      	}
 	      	var credentials = this.getProperties('identification', 'password'),
 	        	authenticator = 'authenticator:jwt';

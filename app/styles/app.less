@@ -590,6 +590,7 @@ body {
 .player video{
     width: 100%;
     height: 100%;
+    user-select:none;
 }
 .player .controls_row{
     width: 100%;
@@ -603,7 +604,7 @@ body {
         user-select:none;
     }
 }
-.player .controls_row .progress_wrap{
+.progress_wrap{
     position: absolute;
     top: 10px;
     height: 5px;
@@ -615,13 +616,13 @@ body {
         width: 14px;
         height: 14px;
         .rounded(50%);
-        transition: 0.6s linear;
         background-color: #a7ccfa;
         top: 50%;
         margin-top: -7px;
         margin-left: -7px;
         visibility: hidden;
         opacity: 0;
+        //.transition(0.2s);
         position: absolute;
         -webkit-user-select: none;
           -khtml-user-select: none;
@@ -633,8 +634,25 @@ body {
         position: absolute;
         width: 100%;
         height: 100%;
-        z-index: 5;
+        z-index: 2;
         cursor: pointer;
+    }
+    .line{
+        height: 100%;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: 0 0;
+        background-color: #88aeda;
+        position: absolute;
+        //.transition(0.2s);
+    }
+}
+.nodelay{
+    .line{
+        transition: none;
+    }
+    .round{
+        transition: none;
     }
 }
 .select_zone{
@@ -642,6 +660,7 @@ body {
     position: absolute;
     width: 100%;
     top: -10px;
+    cursor: pointer;
     &:hover{
         .progress_wrap{
             top: 5px;
@@ -654,15 +673,7 @@ body {
         
     }
 }
-.player .controls_row .progress_wrap .line{
-    height: 100%;
-    width: 100%;
-    transform: scaleX(0);
-    transform-origin: 0 0;
-    background-color: #88aeda;
-    transition: 0.6s linear;
-    position: absolute;
-}
+ 
 .play{
     width: 15px;
     height: 18px;
@@ -700,6 +711,7 @@ body {
     float: left;
     margin: 15px 0px 0px 30px;
     position: relative;
+    z-index: 3;
     &:hover{
         span{
             opacity: 1;

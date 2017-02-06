@@ -1,21 +1,26 @@
 <div class="right-preview">
 {{#each anime.series as |item|}}
-	<div class="preview-element" onclick={{action 'selectSeries' item.cover}} data={{item.video.url}} style="background: url(../{{item.thumb}})">{{item.number}}</div>
+	<div 
+		class="preview-element" 
+		onclick={{action 'selectSeries' item.cover}} 
+		data={{item.video.url}} 
+		style={{html-safe (concat "background-image: url(../" item.thumb ");")}}
+	>
+		{{item.number}}
+	</div>
 {{/each}}
 </div>
-<div class="video-player">
+<div class="video-player" >
 	<div class="player">
-		<video src={{video_url}} id="video"></video>
+		<video src={{anime.series.firstObject.video.url}} id="video"></video>
 		<div class="controls_row">
 			<div class="select_zone">
-				<div class="progress_wrap" onclick={{action 'setTime'}}>
+				<div class="progress_wrap" >
 					<div class="line"></div>
 					<div class="round" id="round" ></div>
-					<div class="click_mask" onmousemove={{action 'range'}} onmousedown={{action 'detect'}} onmouseup={{action 'undetect'}}></div>
 				</div>
 			</div>
-			
-			<div class="play">
+			<div class="play" id="play">
 				<img src="/img/play.svg">
 				<img src="/img/pause.svg">
 			</div>
@@ -32,12 +37,13 @@
 							<div class="vl_progress"></div>
 							{{input 
 								type="range" 
-								value=volume
+								value=80
 								min="0" 
 								max="100" 
+								id='volume'
 							}}
 						</div>
-						<img src="/img/4.svg" class="mute unmuted" onclick={{action 'toggleMute'}}>
+						<img src="/img/4.svg" class="mute">
 					</div>
 				</div>
 			</div>

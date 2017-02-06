@@ -9,7 +9,7 @@ export default Ember.Component.extend({
 			this.set('genres', data);
 		});
 		this.get('anime.genres').forEach(function(item) {
-			item.set('check', true)
+			item.set('check', true);
 		});
 	},
 	sortProperties: ['number'],
