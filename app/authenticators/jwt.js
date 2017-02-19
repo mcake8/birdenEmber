@@ -14,30 +14,30 @@ export default Base.extend({
 		});
 	},
 	authenticate(creds) {
-	const { identification, password } = creds;
-	const data = JSON.stringify({
-		auth: {
-			email: identification,
-			password
-		}
-	});
-	const requestOptions = {
-		url: this.tokenEndpoint,
-		type: 'POST',
-		data,
-		contentType: 'application/json',
-		dataType: 'json'
-	};
-	return new Promise((resolve, reject) => {
-      	ajax(requestOptions).then((response) => {
-        	const { jwt } = response;
-        	// Wrapping aync operation in Ember.run
-        	run(() => {
-	          	resolve({
-		            token: jwt
+		const { identification, password } = creds;
+		const data = JSON.stringify({
+			auth: {
+				email: identification,
+				password
+			}
+		});
+		const requestOptions = {
+			url: this.tokenEndpoint,
+			type: 'POST',
+			data,
+			contentType: 'application/json',
+			dataType: 'json'
+		};
+		return new Promise((resolve, reject) => {
+	      	ajax(requestOptions).then((response) => {
+	        	const { jwt } = response;
+	        	// Wrapping aync operation in Ember.run
+	        	run(() => {
+		          	resolve({
+			            token: jwt
+			        });
 		        });
-	        });
-	    }, (error) => {
+		    }, (error) => {
 		        // Wrapping aync operation in Ember.run
 		        run(() => {
 		          reject(error);

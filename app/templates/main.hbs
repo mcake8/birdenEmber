@@ -9,15 +9,35 @@
 	<div class="col-3">
 		<div class="wrap-col">
 			<a href="#" {{action 'invalidateSession'}} class="pos-3"></a>
-			<a href="#" class="pos-2">
+			<div class="pos-2">
 				<div class="notif">4</div>
-			</a>
-			<a href="#" class="pos-1">{{sessionAccount.account.email}}</a>
+				<div class="notify-list">
+					<div class="notify-list__title">Недавние обновления:</div>
+					{{#each sessionAccount.account.notifications as |item|}}
+						<div class=" 
+							notify-list__item 
+							{{unless item.is_watch "notify-list__item_is-watch"}}
+						">
+							{{link-to 
+								item.series.anime.title
+								'main.anime.page' item.series.anime.id
+								class="notify-list__item-title"
+							}}
+							<div class="notify-list__item-episode">
+								Номер эпизода {{item.series.number}}
+							</div>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+			{{#link-to 'main.user' sessionAccount.account.id class="pos-1"}}
+				{{sessionAccount.account.email}}
+			{{/link-to}}
 		</div>
 	</div>
 	<div class="logo">
 		{{#link-to 'main'}}
-				<img src="/img/logo.png">
+			<img src="/img/logo.png">
 		{{/link-to}}
 	</div>
 </div>

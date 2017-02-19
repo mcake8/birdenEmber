@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	init() {
+	didInsertElement() {
 		this._super(...arguments);
 		this.get('catSort');
 	},
@@ -13,7 +13,7 @@ export default Ember.Component.extend({
 			this.get('store').query('anime', {
 				genre: genre
 			}).then((data) => {
-				data = this.get('updateValue')(data); 
+				this.get('updateValue')(data); 
 			});
 		};
 		this.get('updateValue')(data);

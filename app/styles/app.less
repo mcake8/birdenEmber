@@ -346,7 +346,7 @@ body {
 .main-header .col-3 .wrap-col {
     margin-left: 26px
 }
-.main-header .col-3 .wrap-col>a {
+.main-header .col-3 .wrap-col > a, .main-header .col-3 .wrap-col > div {
     display: block;
     position: relative;
     margin-right: 22px;
@@ -357,7 +357,7 @@ body {
     float: right;
     margin-left: 10px
 }
-.main-header .col-3 .wrap-col>a:before {
+.main-header .col-3 .wrap-col>*:before {
     content: "";
     width: 14px;
     height: 15px;
@@ -1177,4 +1177,63 @@ button{
 .video-preview_is-active {
     background-color: #25d1a9;
     color:#fff;
+}
+
+/* Окно уведомлений */
+.pos-2 {
+    position: relative;
+    &:hover {
+        .notify-list {
+            visibility:visible;
+            opacity:1;
+        }
+    }
+}
+
+.notify-list {
+    width:280px;
+    padding:13px 13px 17px;
+    font-size: 14px;
+    font-weight:400;
+    background-color: #fff;
+    border-radius:3px;
+    box-shadow:0px 2px 8px rgba(0,0,0,0.12);
+    position: absolute;
+    z-index:10;
+    left:-148px;
+    top:48px;
+    // visibility:hidden;
+    // opacity:0;
+    .transition-duration(0.3s);
+    .notify-list__title {
+        padding:0 7px 8px;
+        color:#333;
+        font-size:13px;
+        font-weight:400;
+    }
+    .notify-list__item-episode {
+        font-size: 11px;
+        opacity: 0.8;
+    }
+    .notify-list__item {
+        padding: 4px 7px 5px;
+        font-size: 13px;
+        position: relative;
+        font-size:13px;
+    }
+    .notify-list__item_is-watch {
+        background-color: #9ae6d4;
+    }
+    &:before {
+        content:"";
+        width: 0; 
+        height: 0; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;  
+        border-bottom: 5px solid #fff;
+        display:block;
+        position: absolute;
+        top:-5px;
+        left:53%;
+    }
 }

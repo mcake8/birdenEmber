@@ -15,10 +15,15 @@
 					{{#link-to 'main.anime.edit' model.id class="edit"}}
 						редактировать
 					{{/link-to}}
-					<button onClick={{action 'subscribeToAnime'}}>
-						ПОДПИСАТЬСЯ
-					</button>
-					<!--<a href="#">Отписаться</a>-->
+					{{#if model.meta.is-subscribe}}
+						<button onClick={{action 'unsubscribeToAnime'}}>
+							Отписаться
+						</button>
+					{{else}}
+						<button onClick={{action 'subscribeToAnime'}}>
+							ПОДПИСАТЬСЯ
+						</button>
+					{{/if}}
 				</div>
 			</div>
 			<div class="anime-main-preview">
