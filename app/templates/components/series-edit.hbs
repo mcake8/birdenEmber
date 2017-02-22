@@ -5,7 +5,7 @@
 		<input type="file" name="" id="series">
 	</label>
 	
-	<div class="alert" style="display:{{valid2}}" id="block2">Упс, чего-то не хватает</div><br>
+	<div class="alert" style={{html-safe (concat "display:" valid )}} id="block2">Упс, чего-то не хватает</div><br>
 	<button {{action 'sendData'}}>Добавить</button>
 	{{changeType}}
 </div>

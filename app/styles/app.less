@@ -582,28 +582,155 @@ body {
     height: 400px;
     background-size: cover;
 }
-.video-player .player{
-    width: 100%;
+.anime_name{
+    position: absolute;
+    left: 35px;
+    top: 25px;
+    opacity: 0;
+    visibility: hidden;
+    color: #fff;
+    .transition(0.2s);
+    .title{
+        font-size: 16px;
+        display: block;
+        font-weight: bold;
+    }
+    .s_num{
+        font-size: 12px;
+    }
+}
+
+.player {
     height: 100%;
     position: relative;
+    overflow: hidden;
+    width: 729px;
+    border-bottom-left-radius: 5px;
+    video{
+        width: 100%;
+        user-select:none;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        border-bottom-left-radius: 18px;
+        .translate(0px, -50%);
+    }
+    .play{
+        width: 15px;
+        height: 18px;
+        float: left;
+        margin-left: 35px;
+        margin-top: 15px;
+        cursor: pointer;
+        img{
+            display: none;
+            width: 100%;
+            opacity: 0.7;
+            &:first-child{
+                display: block;
+            }
+        }
+        &:hover{
+            img{
+                opacity: 1;
+            }
+        }
+    }
 }
-.player video{
+.load_player{
+    .controls_row{
+        bottom: -54px;
+        visibility: hidden;
+        opacity: 0;
+    }
+    .anime_name{
+        opacity: 1;
+        visibility: visible;
+    }
+    .bigplay{
+        display: block;
+    }
+}
+.full_screen_bt{
+    float: right;
+    margin: 15px 25px 0px 0px;
+    width: 25px;
+    height: 17px;
+    cursor: pointer;
+    opacity: 0.7;
+    background: url(../img/full.svg) center no-repeat;
+    &:hover{
+        opacity: 1;
+    }
+}
+.controls_wrap{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 54px;
+    width: 100%;
+}
+.fullScreen{
+    position: absolute;
     width: 100%;
     height: 100%;
+    video{
+        cursor: none;
+    }
+    .controls_row{
+        bottom: -60px;
+    }
 }
-.player .controls_row{
+.row_up{
+    video{
+       cursor: pointer; 
+    }
+    .controls_row{
+        bottom: 0px;
+    }
+}
+.bigplay{
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    cursor: pointer;
+    .translate(-50%,-50%);
+    width: 108px;
+    height: 108px;
+    background-image: url(../img/bigplay.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    &:hover{
+        background-position: 100% 0px;
+    }
+}
+.paused{
+    .play{
+        img{
+            display: block;
+            width: auto;
+            &:first-child{
+                display: none;
+            }
+        }
+    }
+}
+.controls_row{
     width: 100%;
     height: 54px;
     position: absolute;
     padding-top: 5px;
     bottom: 0px;
+    user-select:none;
     background-color: #2d3d53;
+    .transition(0.3s);
     border-bottom-left-radius: 5px;
     img{
         user-select:none;
     }
 }
-.player .controls_row .progress_wrap{
+.progress_wrap{
     position: absolute;
     top: 10px;
     height: 5px;
@@ -615,13 +742,13 @@ body {
         width: 14px;
         height: 14px;
         .rounded(50%);
-        transition: 0.6s linear;
         background-color: #a7ccfa;
         top: 50%;
         margin-top: -7px;
         margin-left: -7px;
         visibility: hidden;
         opacity: 0;
+        //.transition(0.2s);
         position: absolute;
         -webkit-user-select: none;
           -khtml-user-select: none;
@@ -633,8 +760,25 @@ body {
         position: absolute;
         width: 100%;
         height: 100%;
-        z-index: 5;
+        z-index: 2;
         cursor: pointer;
+    }
+    .line{
+        height: 100%;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: 0 0;
+        background-color: #88aeda;
+        position: absolute;
+        //.transition(0.2s);
+    }
+}
+.nodelay{
+    .line{
+        transition: none;
+    }
+    .round{
+        transition: none;
     }
 }
 .select_zone{
@@ -642,6 +786,7 @@ body {
     position: absolute;
     width: 100%;
     top: -10px;
+    cursor: pointer;
     &:hover{
         .progress_wrap{
             top: 5px;
@@ -654,45 +799,57 @@ body {
         
     }
 }
-.player .controls_row .progress_wrap .line{
-    height: 100%;
-    width: 100%;
-    transform: scaleX(0);
-    transform-origin: 0 0;
-    background-color: #88aeda;
-    transition: 0.6s linear;
+.wait_next{
+    .next_wrap{
+        visibility: visible;
+        opacity: 1;
+    }
+}
+.next_wrap{
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
-}
-.play{
-    width: 15px;
-    height: 18px;
-    float: left;
-    margin-left: 35px;
-    margin-top: 15px;
-    cursor: pointer;
-    img{
-        display: none;
-        width: 100%;
-        opacity: 0.7;
-        &:first-child{
-            display: block;
-        }
-    }
-    &:hover{
-        img{
-            opacity: 1;
-        }
-    }
-}
-
-.play.paused{
-    img{
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    .transition(0.2s);
+    &:before{
+        content: '';
         display: block;
-        width: auto;
-        &:first-child{
-            display: none;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .bigplay{
+        display: block;
+        position: static;
+        margin: 10px auto;
+        .translate(0,0);
+    }
+    #cancel{
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover{
+            text-decoration: none;
         }
     }
+}
+.nextTimer{
+    position: absolute;
+    display: table;
+    left: 50%;
+    color: #fff;
+    top: 50%;
+    text-align: center;
+    .translate(-50%,-50%);
+
 }
 .volume{
     width: 21px;
@@ -700,6 +857,7 @@ body {
     float: left;
     margin: 15px 0px 0px 30px;
     position: relative;
+    z-index: 3;
     &:hover{
         span{
             opacity: 1;
@@ -843,6 +1001,30 @@ body {
             margin-left: 10px;
         }
     }
+}
+.prev_bt, .next_bt{
+    float: left;
+    margin-top: 11px;
+    opacity: 0.7;
+    padding: 2px 3px;
+    cursor: pointer;
+    width: 17px;
+    height: 24px;
+    &:hover{
+        opacity: 1;
+    }
+}
+.hidden{
+    display: none;
+}
+.prev_bt{
+    margin-left: 21px;
+    background: url(../img/prev.svg) center no-repeat;
+}
+.next_bt{
+    margin-right: 21px;
+    float: right;
+    background: url(../img/next.svg) center no-repeat;
 }
 .anime-page-wrap .anime-menu .opacity-background .anime-main-preview .right-preview {
     overflow: auto;
@@ -1202,8 +1384,8 @@ button{
     z-index:10;
     left:-148px;
     top:48px;
-    // visibility:hidden;
-    // opacity:0;
+    visibility:hidden;
+    opacity:0;
     .transition-duration(0.3s);
     .notify-list__title {
         padding:0 7px 8px;

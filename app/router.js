@@ -22,6 +22,7 @@ Router.map(function() {
   });
   this.route('generator');
   this.route('registration');
+  this.route('main\\admin\\userList');
 });
 
 export default Router;
