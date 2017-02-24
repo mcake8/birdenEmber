@@ -6,7 +6,7 @@ export default DS.Model.extend({
 	manufacturer: DS.attr('string'),
 	video_preview: DS.attr('string'),
 	genres: DS.hasMany('genre'),
-	type: DS.attr('string'),
+	anime_type: DS.attr('string'),
 	date: DS.attr('string'),
 	description: DS.attr('string'),
 	series: DS.hasMany('series', { async: true }),

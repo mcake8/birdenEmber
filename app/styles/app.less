@@ -387,8 +387,18 @@ body {
     height: 12px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    border-radius: 50%
+    border-radius: 50%;
+    animation: bouncing-circle 2s infinite;
+    animation-timing-function: ease-out;
 }
+
+@keyframes bouncing-circle {
+    0% { top: 11px }
+    10% { top: 5px }
+    20% { top: 11px }
+    100% { top: 11px }
+}
+
 .main-header .col-3 .wrap-col .pos-3 {
     margin-top: 1px
 }
@@ -1192,6 +1202,8 @@ button{
 
 .notify-list {
     width:280px;
+    max-height:250px;
+    overflow:auto;
     padding:13px 13px 17px;
     font-size: 14px;
     font-weight:400;
@@ -1202,8 +1214,8 @@ button{
     z-index:10;
     left:-148px;
     top:48px;
-    // visibility:hidden;
-    // opacity:0;
+    visibility:hidden;
+    opacity:0;
     .transition-duration(0.3s);
     .notify-list__title {
         padding:0 7px 8px;
@@ -1216,6 +1228,8 @@ button{
         opacity: 0.8;
     }
     .notify-list__item {
+        background-color: #fff;
+        .transition-duration(0.3s);
         padding: 4px 7px 5px;
         font-size: 13px;
         position: relative;
@@ -1236,4 +1250,34 @@ button{
         top:-5px;
         left:53%;
     }
+}
+
+.subscription-page {
+    padding: 41px 30px 70px 50px;
+    box-shadow: 0 5px 15px rgba(205, 218, 241, 0.51);
+    margin: 0 auto;
+    display: table;
+    max-width: 560px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.subscription-list {
+    padding-bottom: 10px;
+    .subscription-list__title {
+        margin-right:100px;
+    }
+    .subscription-list__button {
+        width:100px;
+        float:right;
+        a {
+            color: #2c2f50;
+        }
+    }
+}
+
+h1 {
+    padding-bottom:13px;
+    font-size:25px;
+    font-weight: 500;
 }

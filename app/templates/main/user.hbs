@@ -1,5 +1,11 @@
-<div class="catalog-menu">
-	{{#each sessionAccount.account.notifications as |item|}}
-		Anime id is <b>{{item.anime.title}}</b><br>
+<div class="subscription-page">
+	<h1>Подписки</h1>
+	{{#each sessionAccount.account.subscriptions as |item|}}
+		<div class="subscription-list">
+			<div class="subscription-list__button">
+				<a href="#" {{action 'unsubscribe' item.id}}>Отписаться</a>
+			</div>
+			<div class="subscription-list__title">{{item.anime.title}}</div>
+		</div>
 	{{/each}}
 </div>

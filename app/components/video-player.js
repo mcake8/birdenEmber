@@ -11,6 +11,7 @@ export default Ember.Component.extend({
 
 		let first_anime = this.get('anime.series.firstObject.video.url');
 		this.set('video_url', first_anime);
+		console.log(this.$()[0]);
 	},
 	volume: 85,
 	memory: 85,
