@@ -24,7 +24,7 @@
 			<div class="input-title">Описание</div>
 			{{textarea value=anime.description}}
 			<button {{action 'edit'}}>Сохранить описание</button>
-			<div class="alert" style="display:{{valid}}">Упс, чего-то не хватает</div>
+			<div class="alert" style={{html-safe (concat "display:" valid )}}>Упс, чего-то не хватает</div>
 		</form>
 	</div>
 	<div class="series-list">

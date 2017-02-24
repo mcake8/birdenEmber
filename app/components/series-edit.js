@@ -5,7 +5,12 @@ export default Ember.Component.extend({
 	store: Ember.inject.service('store'),
 	changeType: Ember.computed('number', function() {
 		let number = this.get('number');
-		(Ember.isBlank(number)) ? this.set('seriesId', undefined) : "";
+		// (Ember.isBlank(number)) ? this.set('seriesId', undefined) : null;
+		if(Ember.isBlank(number)) {this.set('seriesId', undefined)}
+		// 	this.set('seriesId', undefined);
+		// } else {
+		// 	return null;
+		// }
 	}),
 	actions: {
 		sendData(){

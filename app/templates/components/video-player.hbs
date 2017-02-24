@@ -1,49 +1,76 @@
 <div class="right-preview">
 {{#each anime.series as |item|}}
-	<div class="preview-element" onclick={{action 'selectSeries' item.cover}} data={{item.video.url}} style="background: url(../{{item.thumb}})">{{item.number}}</div>
+	<div 
+		class="preview-element" 
+		data={{item.video.url}}
+		coverImg= {{item.cover}}
+		name={{item.name}}
+		style={{html-safe (concat "background-image: url(../" item.thumb ");")}}
+	>
+		{{item.number}}
+	</div>
 {{/each}}
 </div>
-<div class="video-player">
-	<div class="player">
-		<video src={{video_url}} id="video"></video>
-		<div class="controls_row">
-			<div class="select_zone">
-				<div class="progress_wrap" onclick={{action 'setTime'}}>
-					<div class="line"></div>
-					<div class="round" id="round" ></div>
-					<div class="click_mask" onmousemove={{action 'range'}} onmousedown={{action 'detect'}} onmouseup={{action 'undetect'}}></div>
+<div class="video-player" >
+	<div class="player load_player">
+		<video src={{anime.series.firstObject.video.url}} id="video"></video>
+		<div class="anime_name">
+			<span class="title">{{anime.title}}</span>
+			<span class="s_num">1 Серия</span>
+		</div>
+		<div class="next_wrap">
+			<div class="nextTimer">
+				<span id="nextName">Следующая серия</span>
+				<div class="bigplay" id="nextPlay"></div>
+				<div>
+					<span id="remain">10</span> секунд
 				</div>
+				<span id="cancel">Отмена</span>
 			</div>
-			
-			<div class="play">
-				<img src="/img/play.svg">
-				<img src="/img/pause.svg">
-			</div>
-			<div class="volume full">
-				<span>
-					<img src="/img/1.svg">
-					<img src="/img/2.svg">
-					<img src="/img/3.svg">
-				</span>
-				<div class="pannel_wrap">
-					<div class="pannel">
-						<div class="vl_bar">
-							<div class="vl_circle"></div>
-							<div class="vl_progress"></div>
-							{{input 
-								type="range" 
-								value=volume
-								min="0" 
-								max="100" 
-							}}
-						</div>
-						<img src="/img/4.svg" class="mute unmuted" onclick={{action 'toggleMute'}}>
+		</div>
+		<div class="bigplay" id="firstPlay"></div>
+		<div class="controls_wrap">
+			<div class="controls_row">
+				<div class="select_zone">
+					<div class="progress_wrap" >
+						<div class="line"></div>
+						<div class="round" id="round" ></div>
 					</div>
 				</div>
-			</div>
-			<div class="timer">
-				<span id="curentTime">00:00</span>
-				<span id="duration">00:00</span>
+				<div class="play" id="play">
+					<img src="/img/play.svg">
+					<img src="/img/pause.svg">
+				</div>
+				<div class="volume full">
+					<span>
+						<img src="/img/1.svg">
+						<img src="/img/2.svg">
+						<img src="/img/3.svg">
+					</span>
+					<div class="pannel_wrap">
+						<div class="pannel">
+							<div class="vl_bar">
+								<div class="vl_circle"></div>
+								<div class="vl_progress"></div>
+								{{input 
+									type="range" 
+									value=80
+									min="0" 
+									max="100" 
+									id='volume'
+								}}
+							</div>
+							<img src="/img/4.svg" class="mute">
+						</div>
+					</div>
+				</div>
+				<div class="timer">
+					<span id="curentTime">00:00</span>
+					<span id="duration">00:00</span>
+				</div>
+				<div class="prev_bt"></div>
+				<div class="full_screen_bt" id="fs_bt"></div>
+				<div class="next_bt"></div>
 			</div>
 		</div>
 	</div>
