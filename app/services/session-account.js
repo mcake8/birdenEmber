@@ -8,7 +8,7 @@ export default Ember.Service.extend({
 		return new RSVP.Promise((resolve, reject) => {
 			const token = this.get('session.data.authenticated.token');
 			if (!Ember.isEmpty(token)) {
-				return this.get('store').findRecord('user', 'current').then((user) => {
+				return this.get('store').queryRecord('user', {'me': true}).then((user) => {
 					this.set('account', user);
 					document.cookie = "username=" + user.id;
 					resolve();
