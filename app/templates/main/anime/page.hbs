@@ -12,9 +12,11 @@
 					</div>
 				</div>
 				<div class="subscribe-button">
-					{{#link-to 'main.anime.edit' model.id class="edit"}}
-						редактировать
-					{{/link-to}}
+					{{#if sessionAccount.account.is_admin}}
+						{{#link-to 'main.anime.edit' model.id class="edit"}}
+							редактировать
+						{{/link-to}}
+					{{/if}}
 					{{#if model.meta.is-subscribe}}
 						<button onClick={{action 'unsubscribeToAnime'}}>
 							Отписаться
@@ -32,12 +34,7 @@
 		</div>
 	</div>
 	<div class="anime-description">
-		<div class="rating-vol">
-			<div class="percentage-background"></div>
-			<div class="rating-title">Средний балл:</div>
-			<div class="rating-nums">9.2 из 10
-			</div>
-		</div>
+		{{anime-score anime=model}}
 		<div class="short-des">
 			<div class="short-des-title">
 				Краткое описание

@@ -48,10 +48,12 @@ export default Ember.Component.extend({
 			console.log(this.get('cover'));
 			let animeToBase = this.get('store').createRecord('anime', data);
 			
+			
+
 			data.genres.forEach((item) => {
 				let s = this.get('store').peekRecord('genre', item.get('id'));
-				s.get('animes').addObject(animeToBase);
-				s.save();
+				animeToBase.get('genres').pushObject(s);
+				// s.save();
 				item.set('check', false)
 			});
 			
