@@ -6,6 +6,5 @@ export default Ember.Route.extend({
 			genres: this.store.findAll('genre'),
 			anime: this.store.findAll('anime')
 		});
-		
 	}
 });

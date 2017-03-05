@@ -1,5 +1,6 @@
 import Ember from 'ember';
 const $ = Ember.$;
+let that;
 function scoreMaker() {
 	let rateMove,
 		rateZone = $('.rating-vol');
@@ -15,6 +16,12 @@ function scoreMaker() {
 			updateScore(e.pageY);
 		}
 	});
+	rateZone.mouseleave(function(e){
+		if (rateMove) {
+			updateScore(e.pageY);
+			rateMove = false;
+		}
+	});
 	let updateScore = function(y) {
 		let position = y - rateZone.offset().top,
 			percent = 100 * position / rateZone.height();
@@ -25,18 +32,21 @@ function scoreMaker() {
 			percent = 0;
 		}
 		let rateNum = parseInt(100 - percent) / 10;
+		$('.rate_name').html('Ваша оценка');
 		$('.percentage-background').css('height', 100 - percent + '%');
-		$('#rate').html(rateNum);
+		$('.rate').html(rateNum);
 	};
 }
 function prepData(arr){
 	let scoreData = {
 		anime: arr[0],
-		value: +$('#rate').html(),
+		value: +$('.rate').html(),
 		user: arr[1]
 	};
-	let score = this.get('store').createRecord('score',scoreData);
-	score.save();
+	let score = that.get('store').createRecord('score',scoreData);
+	score.save().then((data) => {
+		this.set('anime.average_score', data.get('anime_average_score'));
+	});
 }
 export default Ember.Component.extend({
 	didInsertElement() {
@@ -46,11 +56,12 @@ export default Ember.Component.extend({
 	sessionAccount: Ember.inject.service(),
 	actions:{
 		sendScore(){
+			that = this;
 			let anime = this.get('anime'),
 				user = this.get('sessionAccount.account'),
 				arr = [anime, user];
 
-			Ember.run.throttle(this, prepData, arr, 5000);
+			Ember.run.debounce(this, prepData, arr, 1000);
 		}
 	}
 });

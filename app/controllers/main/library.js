@@ -6,8 +6,18 @@ export default Ember.Controller.extend({
 	sortBy: ['title'],
 	data: Ember.computed.sort('model.anime', 'sortBy'),
 	actions: {
-		updateCategoryValue(name) {
-			this.set('animeItems', name);
+		changeCatalog(target) {
+			this.set('genre', target);
+			if (target !== 'все') {
+				this.get('store').query('anime', {
+					genre: target
+				}).then((data) => {
+					this.set('model.anime', data); 
+				});
+			} else{
+				let anime = this.store.findAll('anime');
+				this.set('model.anime', anime);
+			}
 		},
 		showVideoPreview() {
 			let video = event.target.querySelector('video');

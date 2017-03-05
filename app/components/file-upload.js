@@ -50,7 +50,6 @@ export default Ember.Component.extend({
   actions: {
   	buttonChange(){
 	  	let file = Ember.$("#fileCover")[0].files[0];
-	  	console.log(file)
 	    this.sendAction('fileInputChanged', file);
 	}
   }

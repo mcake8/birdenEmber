@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
 	sessionAccount: Ember.inject.service('session-account'),
 	actions: {
 		subscribeToAnime() {
-			// let user = this.get('sessionAccount.account');
 			let anime = this.get('model');
 			let new_sucription = this.store.createRecord('subscription', {
 				anime: anime

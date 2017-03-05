@@ -1,12 +1,16 @@
-<h1>{{categoryValue}}</h1>
 <div class="catalog-menu">
 	<div class="top-catalog-options">
-		{{sort-select 
-			gens=model.genres 
-			genre=genre
-			anims=model.anime 
-			updateValue=(action 'updateCategoryValue')
-		}}
+		<div class="left-select">
+			<select  onchange={{action "changeCatalog" value="target.value"}} >
+				<option value="все">Все жанры</option>
+				{{#each model.genres as |item|}}
+					<option selected={{is-equal item.name genre}}>
+						{{item.name}}
+					</option>
+				{{/each}}
+			</select>
+			{{catSort}}
+		</div>
 		<div class="switch">
 			<div class="active">По аниме</div>
 			<div>По сериям</div>

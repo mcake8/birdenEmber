@@ -5,9 +5,11 @@
 		data={{item.video.url}}
 		coverImg= {{item.cover}}
 		name={{item.name}}
+		duration={{item.duration}}
 		style={{html-safe (concat "background-image: url(../" item.thumb ");")}}
 	>
 		{{item.number}}
+		<span class="duration"></span>
 	</div>
 {{/each}}
 </div>

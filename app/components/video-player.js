@@ -109,6 +109,8 @@ function player(){
 					$('.next_bt').addClass('hidden');
 				}
 			}
+			let serDuration = $(this).attr('duration');
+			$('.duration').html(timeFormat(serDuration));
 		});
 		let gen = that.get('anime.genres.firstObject.name');
 		that.get('store').query('anime', {
@@ -399,9 +401,12 @@ export default Ember.Component.extend({
 		});
 	}),
 	didInsertElement() {
-		animeId = this.get('anime.id');
-		player();
-		that = this;
+		if ($('.preview-element').length > 0) {
+			animeId = this.get('anime.id');
+			player();
+			that = this;
+		}
+		
 	},
 	willDestroyElement() {
   		this._super(...arguments);

@@ -11,5 +11,7 @@ export default DS.Model.extend({
 	description: DS.attr('string'),
 	series: DS.hasMany('series', { async: true }),
 	subscribers: DS.hasMany('subscription'),
+	average_score: DS.attr('string'),
+	user_score: DS.attr('string'),
 	meta: DS.attr()
 });
