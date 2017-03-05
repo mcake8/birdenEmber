@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 	valid: 'none',
 	store: Ember.inject.service('store'),
-	willRender(){
+	didInsertElement(){
 		this._super(...arguments);
 		this.get('store').findAll('genre').then((data) => {
 			this.set('genres', data);

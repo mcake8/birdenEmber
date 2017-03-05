@@ -45,6 +45,7 @@ export default Ember.Component.extend({
 				this.set('valid', 'none');
 			}
 			let animeToBase = this.get('store').createRecord('anime', data);
+			
 			// data.genres.forEach((item) => {
 			// 	let s = this.get('store').peekRecord('genre', item.get('id'));
 			// 	s.get('animes').addObject(animeToBase);

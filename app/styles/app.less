@@ -1128,7 +1128,14 @@ body {
     width: 221px;
     height: 117px;
     border: solid 2px #e2e8f3;
-    position: relative
+    position: relative;
+    user-select: none;
+    &:hover{
+        .percentage-background{
+            background-color: #25d1a8;
+            opacity: .45;
+        }
+    }
 }
 .anime-page-wrap .anime-description .rating-vol .percentage-background {
     width: 100%;
@@ -1136,6 +1143,7 @@ body {
     position: absolute;
     background-color: #e2e8f3;
     opacity: .63;
+    transition: background-color 0.3s;
     bottom: 0
 }
 .anime-page-wrap .anime-description .rating-vol .rating-title {
