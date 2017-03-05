@@ -10,10 +10,11 @@ function localRecord() {
 		seriaId: $('.current_vid').index(),
 		duration: video.duration,
 		volume: video.volume
-	}
+	};
 	let animeKey = 'anime' + animeId;
+	
 	localStorage.setItem(animeKey, JSON.stringify(animeData));
-};
+}
 
 function player(){
 	let dragZone = $('.select_zone'),
@@ -41,7 +42,7 @@ function player(){
 		miniVid = $('.show_preview video')[0],
 		previewBlock = $('.show_preview');
 	
-	var locallData = JSON.parse(localStorage.getItem('anime' + animeId))
+	var locallData = JSON.parse(localStorage.getItem('anime' + animeId));
 	if (locallData !== null) {
 		changeSeria(locallData.seriaId);
 		lastTime = locallData.lastTime;
@@ -212,7 +213,7 @@ function player(){
 		    }
 		}
 	}
-	$(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e){
+	$(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(){
 		if (!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullscreenElement)) {
 			player.removeClass('fullScreen');
 		}
@@ -247,7 +248,7 @@ function player(){
 		togglePause();
 	});
 	$('#no').click(function(){
-		player.removeClass('continue')
+		player.removeClass('continue');
 	});
 	$('.recommended').on('click', '.recommended_anime', function(){
 		player.removeClass('wait_next wait_next-last').addClass('load_player');
@@ -286,7 +287,7 @@ function player(){
 		if (player.hasClass('fullScreen')) {
 			player.addClass('row_up');
 			Ember.run.debounce(this, removePlClass , 2000);
-		};
+		}
 	});
 	function removePlClass (){
 		player.removeClass('row_up');
@@ -330,7 +331,7 @@ function player(){
 		
 	};
 	function changeSeria(target){
-		player.removeClass('continue')
+		player.removeClass('continue');
 		let vid = $('#video'),
 			previewElm = $('.preview-element');
 		prevBt.removeClass('hidden');
@@ -351,7 +352,7 @@ function player(){
 		if (ind === $('.preview-element').length - 1) {
 			$('.next_bt').addClass('hidden');
 		}
-		vid.off('loadedmetadata')
+		vid.off('loadedmetadata');
 		vid.on('loadedmetadata', function() {
 			refreshBar();
 			if (!player.hasClass('load_player')) {
@@ -389,10 +390,8 @@ export default Ember.Component.extend({
 	router: Ember.inject.service('router'),
 	recommendedAnim: '',
 	disabledView: Ember.computed('anime', function() {
-		console.log('change')
 		Ember.run.scheduleOnce('afterRender', this, function(){
 			let videoWrap = $('.video-player');
-			console.log('schedulechange')
 			videoWrap.removeClass('disabledView');
 			if ($('.preview-element').length < 1) {
 				videoWrap.addClass('disabledView');
@@ -405,7 +404,6 @@ export default Ember.Component.extend({
 		that = this;
 	},
 	willDestroyElement() {
-		console.log('destroy')
   		this._super(...arguments);
   		localRecord();
   	}

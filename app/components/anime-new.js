@@ -4,6 +4,7 @@ export default Ember.Component.extend({
 	valid: 'none',
 	store: Ember.inject.service('store'),
 	cover: '',
+	metaCover: '',
 	init() {
 		this._super(...arguments);
 		this.get('store').findAll('genre').then((data) => {
@@ -38,22 +39,21 @@ export default Ember.Component.extend({
 
 			data.genres = items.filterBy('check', true);
 			
-			for (let item in data) {
-				if (data[item] === undefined) {
-					return this.set('valid', 'block');
-				}
-				this.set('valid', 'none');
+			// for (let item in data) {
+			// 	if (data[item] === undefined) {
+			// 		return this.set('valid', 'block');
+			// 	}
+			// 	this.set('valid', 'none');
+			// }
+			if (!Ember.isPresent(data.cover)) {
+				data.meta = {
+					cover_url: this.get('metaCover')
+				};
 			}
 			let animeToBase = this.get('store').createRecord('anime', data);
-			
-			// data.genres.forEach((item) => {
-			// 	let s = this.get('store').peekRecord('genre', item.get('id'));
-			// 	s.get('animes').addObject(animeToBase);
-			// 	s.save();
-			// 	item.set('check', false);
-			// });
-			
+
 			animeToBase.save();
+
 			// this.set('title','');
 			// this.set('manufacturer','');
 			// this.set('date','');
@@ -74,7 +74,7 @@ export default Ember.Component.extend({
 			   },
 			   success(data) {
 			    _this.set('title', data.title);
-			    // _this.set('cover', data.cover);	
+			    _this.set('metaCover', data.remote_cover_url);	
 			    _this.set('manufacturer',data.manufacturer);
 			    _this.set('type',data.animeType);
 			    _this.genreIterator(data.genres);
@@ -83,6 +83,7 @@ export default Ember.Component.extend({
 			   },
 			   type: 'GET'
 			});
+
 		},
 		receiveFile(file){
 			// let asset = {

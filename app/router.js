@@ -17,6 +17,7 @@ Router.map(function() {
   	});
     this.route('admin', function() {
       this.route('animeList');
+      this.route('userList');
     });
     this.route('user', {path: '/user/:user_id'});
   });

@@ -26,7 +26,7 @@ function scoreMaker() {
 		}
 		let rateNum = parseInt(100 - percent) / 10;
 		$('.percentage-background').css('height', 100 - percent + '%');
-		$('#rate').html(rateNum)
+		$('#rate').html(rateNum);
 	};
 }
 function prepData(arr){
@@ -34,9 +34,8 @@ function prepData(arr){
 		anime: arr[0],
 		value: +$('#rate').html(),
 		user: arr[1]
-	}
+	};
 	let score = this.get('store').createRecord('score',scoreData);
-	console.log('test')
 	score.save();
 }
 export default Ember.Component.extend({

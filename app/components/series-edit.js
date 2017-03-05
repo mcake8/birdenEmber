@@ -5,12 +5,9 @@ export default Ember.Component.extend({
 	store: Ember.inject.service('store'),
 	changeType: Ember.computed('number', function() {
 		let number = this.get('number');
-		// (Ember.isBlank(number)) ? this.set('seriesId', undefined) : null;
-		if(Ember.isBlank(number)) {this.set('seriesId', undefined)}
-		// 	this.set('seriesId', undefined);
-		// } else {
-		// 	return null;
-		// }
+		if(Ember.isBlank(number)) {
+			this.set('seriesId', undefined);
+		}
 	}),
 	actions: {
 		sendData(){
@@ -21,7 +18,7 @@ export default Ember.Component.extend({
 				anime: this.get('store').peekRecord('anime', this.get('anime-id')),
 				number: this.get('number'),
 				video: Ember.$("#series")[0].files[0]
-			}
+			};
 			// if (Ember.isPresent(seriesId)){
 			// 	this.get('store').findRecord('series',seriesId).then((seria) =>{
 			// 		seria.setProperties(episode);
@@ -34,23 +31,7 @@ export default Ember.Component.extend({
 			// }
 			
 			let series_to_base = this.get('store').createRecord('series', episode);
-			series_to_base.save();
-
-
-
-			// this.get('store').query('series', {
-			// 	orderBy: 'number',
-			// 	equalTo: episode.number,
-			// }).then((series) => {
-			// 	let seria = series.get('firstObject');
-				
-			// }).catch((error) => {
-				
-
-			// });
-				
-				
-			
+			series_to_base.save();			
 		}
 	}
 });

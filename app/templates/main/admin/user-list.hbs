@@ -1,23 +1,14 @@
-{{!-- <div class="catalog-menu">
-	<div class="top-catalog-options">
-		{{sort-select 
-            gens=model.genres 
-            category=category
-            anims=model.anime 
-            updateValue=(action 'updateCategoryValue')
-        }}
-	</div>
-	<div class="table-list">
-		<table style="width:100%">
-    		<thead>
-    			<tr>
-    				<td>НАЗВАНИЕ</td>
-    				<td>ЖАНРЫ</td>
-    				<td>ГОД ВЫПУСКА</td>
-    				<td></td>
-    			</tr>
-    		</thead>
-    		<tbody>
+<div class="catalog-menu">
+    <div class="table-list">
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <td>Email</td>
+                    <td>Права</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
                 {{#each animeItems as |catalog|}}
                     <tr>
                         <td>{{catalog.title}}</td>
@@ -32,8 +23,7 @@
                         <td><span onclick={{action "delete" catalog.id}} class="delete">Удалить</span></td>
                     </tr>
                 {{/each}}
-    		</tbody>
-	    </table>
+            </tbody>
+        </table>
     </div>
 </div>
- --}}
