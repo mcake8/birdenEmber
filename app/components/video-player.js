@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 const $ = Ember.$;
-let animeId;
+let animeId,
+	that;
 function localRecord() {
 	let video = document.querySelector('#video');
 	let animeData = {
@@ -13,6 +14,7 @@ function localRecord() {
 	let animeKey = 'anime' + animeId;
 	localStorage.setItem(animeKey, JSON.stringify(animeData));
 };
+
 function player(){
 	let dragZone = $('.select_zone'),
 		video = document.querySelector('#video'),
@@ -35,8 +37,9 @@ function player(){
 		vl2 = $('.vl_progress'),
 		prevBt = $('.prev_bt'),
 		nextBt = $('.next_bt'),
-		previewElm = $('.preview-element'),
-		lastTime;
+		lastTime,
+		miniVid = $('.show_preview video')[0],
+		previewBlock = $('.show_preview');
 	
 	var locallData = JSON.parse(localStorage.getItem('anime' + animeId))
 	if (locallData !== null) {
@@ -50,12 +53,12 @@ function player(){
 		localRecord();
 	};
 	video.addEventListener('loadedmetadata', function() {
+		prep();
 		videoDuration = parseFloat(video.duration);
 		durationText.html(timeFormat(videoDuration));
 		video.volume = volume / 100;
 		vl1.css('bottom', volume + '%');
 		vl2.css('height', volume + '%');
-
 	});	
 	video.addEventListener('timeupdate', showProgress);
 	volumeHandler.on('mousemove', function(){
@@ -92,9 +95,29 @@ function player(){
 			$(this).removeClass("silence");
 		}
 	});
+	function prep(){
+		let sidePreviews = $('.preview-element');
+		sidePreviews.each(function(){
+			if($(this).attr('data') === $('#video').attr('src')){
+				$(this).addClass('current_vid');
+				let ind = $(this).index();
+				if (ind === 0) {
+					$('.prev_bt').addClass('hidden');
+				}
+				if (ind === sidePreviews.length - 1) {
+					$('.next_bt').addClass('hidden');
+				}
+			}
+		});
+		let gen = that.get('anime.genres.firstObject.name');
+		that.get('store').query('anime', {
+			recommended: gen
+		}).then((data) => {
+			that.set('recommendedAnim', data);
+		});
+	}
 	function togglePause(){
-		player.removeClass('wait_next');
-		player.removeClass('load_player');
+		player.removeClass('wait_next wait_next-last load_player');
 		player.toggleClass('paused');
 		if (!player.hasClass("paused")) {
 			video.pause();
@@ -109,8 +132,7 @@ function player(){
 	function showProgress(){
 		let currentTime = event.target.currentTime;
 		currentTimeText.text(timeFormat(currentTime));
-
-		if (currentTime === videoDuration) {
+		if (currentTime >= videoDuration) {
 			video.currentTime = 0;
 			refreshBar();
 			nextSeria();
@@ -121,6 +143,7 @@ function player(){
 	function nextSeria(){
 		let current = $('.current_vid'),
 			next = current.index() + 1,
+			previewElm = $('.preview-element'),
 			cover = previewElm.eq(next).attr('coverImg');
 		$('.next_wrap').css('background-image', 'url(../' + cover + ')' );
 		if (current.index() !== previewElm.length - 1) {
@@ -136,6 +159,8 @@ function player(){
 			 		changeSeria(next);
 			 	}
 			}, 1000);
+		} else {
+			player.addClass('wait_next wait_next-last');
 		}
 		
 	}
@@ -153,7 +178,6 @@ function player(){
 				persentWay = persentWay + onePercent;
 				progressBar.css('transform', 'scaleX(' + persentWay + ')');
 				progressRound.css('transform', 'translateX(' + way + 'px)');
-				//progressRound.css('left', persentWay*100 + '%');
 				if (way >= waylength || persentWay >= 100){
 					clearInterval(timer);
 				}
@@ -191,7 +215,6 @@ function player(){
 	$(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e){
 		if (!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullscreenElement)) {
 			player.removeClass('fullScreen');
-			console.log('exitF')
 		}
 	});
 	$('#fs_bt').click(function(){
@@ -211,12 +234,12 @@ function player(){
 	});
 	$('#nextPlay').click(function(){
 		clearInterval(nextTimer);
-		player.removeClass('wait_next');
+		player.removeClass('wait_next wait_next-last');
 		changeSeria($('.current_vid').index() + 1);
 	});
 	$('#cancel').click(function(){
 		clearInterval(nextTimer);
-		player.removeClass('wait_next');
+		player.removeClass('wait_next wait_next-last');
 	});
 	$('#yes').click(function(){
 		video.currentTime = lastTime;
@@ -226,17 +249,30 @@ function player(){
 	$('#no').click(function(){
 		player.removeClass('continue')
 	});
+	$('.recommended').on('click', '.recommended_anime', function(){
+		player.removeClass('wait_next wait_next-last').addClass('load_player');
+		clearInterval(nextTimer);
+		refreshBar();
+	});
+	
 	var timeDrag = false;
 	dragZone.on('mousedown', function(e) {
 		timeDrag = true;
-		updatebar(e.pageX);
+		updatebar(e.pageX, video, progressRound, progressBar );
 		clearInterval(timer);
 		video.pause();
+	});
+	dragZone.on('mousemove', function(e) {
+		previewBlock.addClass('showVid');
+		updatebar(e.pageX, miniVid, previewBlock);
+	});
+	dragZone.on('mouseleave', function(){
+		previewBlock.removeClass('showVid');
 	});
 	$(document).on('mouseup', function(e) {
 		if(timeDrag) {
 			timeDrag = false;
-			updatebar(e.pageX);
+			updatebar(e.pageX, video, progressRound, progressBar );
 			if (player.hasClass("paused")) {
 				progressBarMove();
 				video.play();
@@ -245,35 +281,58 @@ function player(){
 	});
 	$(document).on('mousemove', function(e) {
 		if(timeDrag) {
-			updatebar(e.pageX);
+			updatebar(e.pageX, video, progressRound, progressBar );
 		}
 		if (player.hasClass('fullScreen')) {
-			$('.player').addClass('row_up');
+			player.addClass('row_up');
 			Ember.run.debounce(this, removePlClass , 2000);
 		};
 	});
-
 	function removePlClass (){
-		$('.player').removeClass('row_up');
+		player.removeClass('row_up');
 	}
-
-	var updatebar = function(x) {
-		var position = x - dragZone.offset().left;
-		var percent = 100 * position / dragZone.width();
+	var updatebar = function(x, vid, elmTrans, elmScale) {
+		let dragWidth = dragZone.width(),
+			position = x - dragZone.offset().left,
+			percent = 100 * position / dragWidth;
 		if(percent > 100) {
 			percent = 100;
 		}
 		if(percent < 0) {
 			percent = 0;
 		}
-		progressBar.css('transform', 'scaleX(' + percent/100 + ')');
-		let percentToPX = dragZone[0].clientWidth / 100;
-		progressRound.css('transform', 'translateX(' + (percent * percentToPX) + 'px)');
-		video.currentTime = videoDuration * percent / 100;
+		if (Ember.isPresent(elmScale)) {
+			elmScale.css('transform', 'scaleX(' + percent/100 + ')');
+		}
+		vid.currentTime = videoDuration * percent / 100;
+		let percentToPX = percent * dragZone[0].clientWidth / 100;
+		if (elmTrans.hasClass('show_preview')) {
+			let piece = $('.piece');
+			let edge = elmTrans.outerWidth()/2;
+			piece.css({
+				'left': '67px',
+				'right': 'auto'
+			});
+			if (percentToPX < edge) {
+				piece.css('left', percentToPX - 7 + 'px');
+				percentToPX = edge;
+			}
+			if (percentToPX > (dragWidth - edge) ) {
+				piece.css({
+					'left': 'auto',
+					'right': dragWidth - percentToPX - 7 + 'px'
+				});
+				percentToPX = (dragWidth - edge);
+			}
+		}
+		elmTrans.css('transform', 'translateX(' +  percentToPX + 'px)');
+		
+		
 	};
 	function changeSeria(target){
 		player.removeClass('continue')
-		let vid = $('#video');
+		let vid = $('#video'),
+			previewElm = $('.preview-element');
 		prevBt.removeClass('hidden');
 		nextBt.removeClass('hidden');
 		let current = previewElm.eq(target),
@@ -281,6 +340,7 @@ function player(){
 			player_block = document.querySelector(".anime-background-image");
 		player_block.style.backgroundImage = `url(../${img})`;
 		video.src = current.attr("data");
+		miniVid.src = current.attr("data");
 		previewElm.removeClass('current_vid');
 		current.addClass('current_vid');
 
@@ -297,12 +357,12 @@ function player(){
 			if (!player.hasClass('load_player')) {
 				progressBarMove();
 				video.play();
-				$('.player').addClass('paused');
+				player.addClass('paused');
 			}
 			
 		});
 		if (player.hasClass('wait_next')) {
-			player.removeClass('wait_next');
+			player.removeClass('wait_next wait_next-last');
 			clearInterval(nextTimer);
 		}
 		localRecord();
@@ -313,7 +373,7 @@ function player(){
 	nextBt.click(function(){
 		changeSeria($('.current_vid').index() + 1);
 	});
-	previewElm.click(function(){
+	$('.right-preview').on('click', '.preview-element', function(){
 		changeSeria($(this).index());
 	});
 	
@@ -325,24 +385,27 @@ function player(){
 }
 
 export default Ember.Component.extend({
-	didInsertElement() {
-		animeId = this.get('anime.id')
-		player();
-		let sidePreviews = $('.preview-element');
-		sidePreviews.each(function(){
-			if($(this).attr('data') === $('#video').attr('src')){
-				$(this).addClass('current_vid');
-				let ind = $(this).index();
-				if (ind === 0) {
-					$('.prev_bt').addClass('hidden');
-				}
-				if (ind === sidePreviews.length - 1) {
-					$('.next_bt').addClass('hidden');
-				}
+	store: Ember.inject.service('store'),
+	router: Ember.inject.service('router'),
+	recommendedAnim: '',
+	disabledView: Ember.computed('anime', function() {
+		console.log('change')
+		Ember.run.scheduleOnce('afterRender', this, function(){
+			let videoWrap = $('.video-player');
+			console.log('schedulechange')
+			videoWrap.removeClass('disabledView');
+			if ($('.preview-element').length < 1) {
+				videoWrap.addClass('disabledView');
 			}
 		});
+	}),
+	didInsertElement() {
+		animeId = this.get('anime.id');
+		player();
+		that = this;
 	},
 	willDestroyElement() {
+		console.log('destroy')
   		this._super(...arguments);
   		localRecord();
   	}

@@ -11,7 +11,7 @@
 	</div>
 {{/each}}
 </div>
-<div class="video-player" >
+<div class="video-player">
 	<div class="player load_player">
 		<video src={{anime.series.firstObject.video.url}} id="video"></video>
 		<div class="anime_name">
@@ -20,12 +20,26 @@
 		</div>
 		<div class="next_wrap">
 			<div class="nextTimer">
-				<span id="nextName">Следующая серия</span>
-				<div class="bigplay" id="nextPlay"></div>
-				<div>
-					<span id="remain">10</span> секунд
+				<div class="nextTimer_text">
+					<span id="nextName">Следующая серия начнется через</span>
+					<div>
+						<span id="remain">10</span> секунд
+					</div>
+					<span id="nextPlay" class="contr_bt">продолжить</span>
+					<span id="cancel" class="contr_bt">Отмена</span>
 				</div>
-				<span id="cancel">Отмена</span>
+				<div class="last_title">Рекомендуем посмотреть:</div>
+				<div class="recommended">
+					{{#each recommendedAnim as |item|}}
+						{{#link-to 'main.anime.page' item.id class="recommended_anime"}}
+							<div class="img_wrap" title="{{item.title}}">
+								<img src="{{item.cover.url}}">
+							</div>
+							<span class="rec_title">{{item.title}}</span>
+						{{/link-to}}
+					{{/each}}
+				</div>
+				
 			</div>
 		</div>
 		<div class="continue_watch">
@@ -41,7 +55,11 @@
 		<div class="controls_wrap">
 			<div class="controls_row">
 				<div class="select_zone">
-					<div class="progress_wrap" >
+					<div class="progress_wrap">
+						<div class="show_preview">
+							<div class="piece"></div>
+							<video src={{anime.series.firstObject.video.url}} id="preview_video"></video>
+						</div>
 						<div class="line"></div>
 						<div class="round" id="round" ></div>
 					</div>
@@ -84,3 +102,4 @@
 		</div>
 	</div>
 </div>
+{{disabledView}}
