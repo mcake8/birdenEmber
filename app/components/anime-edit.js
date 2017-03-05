@@ -11,6 +11,7 @@ export default Ember.Component.extend({
 		this.get('anime.genres').forEach(function(item) {
 			item.set('check', true);
 		});
+		console.log(this);
 	},
 	sortProperties: ['number'],
 	sortSeries: Ember.computed.sort('anime.series', 'sortProperties'),

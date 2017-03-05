@@ -12,35 +12,31 @@ export default Ember.Component.extend({
 			identification = this.get('identification'),
 			repeatPassword = this.get('repeatPassword');
 		if (this.get('valid').isNone(identification,password,repeatPassword)) {
-
 			return true;
 		}
-		
 	}),
+	authenticate() {
+      	let credentials = this.getProperties('identification', 'password'),
+        	authenticator = 'authenticator:jwt';
+      	this.get('session').authenticate(authenticator, credentials);
+	},
 	actions: {
 		registration() {
-	      	let user = {
-	      		email: this.get('identification'),
-	      		password: this.get('password')
-	      	};
 	      	let password = this.get('password'),
 				identification = this.get('identification'),
 				repeatPassword = this.get('repeatPassword');
-
 	      	if (password === repeatPassword) {
+	      		this.set('errorMessage', false);
 		      	let createUser = this.get('store').createRecord('user', {
 		      		email: identification,
 		      		password: repeatPassword
 		      	});
-		      	createUser.save();
+		      	createUser.save().then(() => {
+					this.authenticate();
+		      	});
 	      	} else {
-	      		console.log('error');
+	      		this.set('errorMessage', true);
 	      	}
-	      	var credentials = this.getProperties('identification', 'password'),
-	        	authenticator = 'authenticator:jwt';
-	      	this.get('session').authenticate(authenticator, credentials).catch((reason)=>{
-		        this.set('errorMessage', reason.error || reason);
-		    });
 	    }
 	}
 });

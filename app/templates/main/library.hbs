@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div class="main-content">
-		{{#each animeItems as |catalog|}}
+		{{#each data as |catalog|}}
 			{{#link-to 'main.anime.page' catalog.id }}
 				{{#if catalog.video_preview}}
 					<div 

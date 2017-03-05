@@ -33,7 +33,7 @@ export default Ember.Component.extend({
 	actions: {
 		sendData() {
 			let items = this.get('store').peekAll('genre');
-			let arr = ['title', 'manufacturer','date', 'description','type','cover'];
+			let arr = ['title', 'manufacturer','date', 'description','anime_type','cover'];
 			let data = this.getProperties(arr);
 
 			data.genres = items.filterBy('check', true);
@@ -44,24 +44,21 @@ export default Ember.Component.extend({
 				}
 				this.set('valid', 'none');
 			}
-			console.log(data);
-			console.log(this.get('cover'));
 			let animeToBase = this.get('store').createRecord('anime', data);
-			
-			data.genres.forEach((item) => {
-				let s = this.get('store').peekRecord('genre', item.get('id'));
-				s.get('animes').addObject(animeToBase);
-				s.save();
-				item.set('check', false)
-			});
+			// data.genres.forEach((item) => {
+			// 	let s = this.get('store').peekRecord('genre', item.get('id'));
+			// 	s.get('animes').addObject(animeToBase);
+			// 	s.save();
+			// 	item.set('check', false);
+			// });
 			
 			animeToBase.save();
-			this.set('title','');
-			this.set('manufacturer','');
-			this.set('date','');
-			this.set('description','');
-			this.set('type','');
-			this.set('cover','');
+			// this.set('title','');
+			// this.set('manufacturer','');
+			// this.set('date','');
+			// this.set('description','');
+			// this.set('anime_type','');
+			// this.set('cover','');
 			
 		},
 		addOnUrl() {

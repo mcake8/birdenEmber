@@ -25,10 +25,9 @@
 		<label for="repeatPassword">
 			{{input placeholder="Подтвеждение пароля" value=repeatPassword}}
 		</label>
-		<button type="submit" disabled={{isDisabled}}>Зарегистрироваться</button>
+		<button type="submit" {{!-- disabled={{isDisabled}} --}}>Зарегистрироваться</button>
 		{{#if errorMessage}}
 			<div class="not-now">Пароли и логин не совпадают</div>
 		{{/if}}
-		{{!-- {{#link-to 'login'}}<button class="reg_bt">Войти</button>{{/link-to}} --}}
 	</form>
 </div>

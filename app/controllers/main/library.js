@@ -3,11 +3,13 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	queryParams: ['genre'],
 	genre: 'все',
+	sortBy: ['title'],
+	data: Ember.computed.sort('model.anime', 'sortBy'),
 	actions: {
 		updateCategoryValue(name) {
 			this.set('animeItems', name);
 		},
-		showVideoPreview(video_preview) {
+		showVideoPreview() {
 			let video = event.target.querySelector('video');
 			if (video) {
 				video.className = "photo_is-acitve";

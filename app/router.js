@@ -22,6 +22,8 @@ Router.map(function() {
   });
   this.route('generator');
   this.route('registration');
+
+  this.route('anime', function() {});
 });
 
 export default Router;

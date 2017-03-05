@@ -18,13 +18,9 @@
 				</label>
 			{{/each}}
 			<div class="input-title">Тип аниме</div>
-
-			{{input  value=type}}
+			{{input value=anime_type}}
 			<div class="input-title">Cover:</div>
 			{{file-upload fileInputChanged="receiveFile" uploadProgress="uploadProgress"}}
-			
-		       
-		    
 			{{!-- {{input  value=cover}} --}}
 			<div class="input-title">Дата выпуска</div>
 			{{input value=date}}

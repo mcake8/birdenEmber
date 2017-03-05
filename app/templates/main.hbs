@@ -9,7 +9,7 @@
 	<div class="col-3">
 		<div class="wrap-col">
 			<a href="#" {{action 'invalidateSession'}} class="pos-3"></a>
-			{{!-- {{notification-block notifications=sessionAccount.account.notifications}} --}}
+			{{notification-block notifications=sessionAccount.account.notifications}}
 			{{#link-to 'main.user' sessionAccount.account.id class="pos-1"}}
 				{{sessionAccount.account.email}}
 			{{/link-to}}

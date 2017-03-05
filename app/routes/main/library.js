@@ -4,9 +4,7 @@ export default Ember.Route.extend({
 	model() {
 		return Ember.RSVP.hash({
 			genres: this.store.findAll('genre'),
-			anime: this.store.findAll('anime').then((data) => {
-				return data.filterBy('title').reverse();
-			})
+			anime: this.store.findAll('anime')
 		});
 		
 	}
